@@ -20,3 +20,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+// frontend route
+Route::get('/about-us', function (){
+    return view('frontend.pages.aboutus');
+});
+
+Route::get('/contact-us', function (){
+    return view('frontend.pages.contactus');
+});

@@ -6,9 +6,9 @@
                     <h2 class="mt-3 text-center">More About Us</h2>
                     <div class="aerrow"></div>
                     <ul class="text-center mt-3">
-                        <li><a href="#">Why us? </a></li>
-                        <li><a href="#">Contact us </a></li>
-                        <li><a href="#">test</a></li>
+                        <li><a class="text-decoration-none" href="#">Why us? </a></li>
+                        <li><a class="text-decoration-none" href="#">Contact us </a></li>
+                        <li><a class="text-decoration-none" href="#">test</a></li>
                       </ul>
                       <div class="mt-5 text-center">
                           <h2>contact</h2>
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="container bg-blue-800">
-           <p> &copy; <a href="">college name</a></p>
+           <p> &copy; <a class="text-decoration-none" href="">college name</a></p>
         </div>
     </footer>
 <script src="{{ asset("js/frontend.js") }}"></script>

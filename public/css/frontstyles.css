@@ -3,7 +3,9 @@ body {
 }
 
 
-
+a {
+    text-decoration: none;
+}
 
 
 .aerrow {
@@ -41,4 +43,9 @@ p a:hover{
     background-attachment: fixed;
     opacity: 0.8;
 
+}
+
+
+.active-nav {
+    color: aqua;
 }

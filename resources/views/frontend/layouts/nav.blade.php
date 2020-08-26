@@ -29,27 +29,28 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li class="{{ Request::path() == '/' ? 'active' : '' }} nav-item">
+        <a class="nav-link text-decoration-none" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About us</a>
+      <li class="{{ Request::path() == 'about-us' ? 'active' : '' }} nav-item">
+        <a class="nav-link text-decoration-none" href="/about-us">About us</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact us</a>
+    <li class="{{ Request::path() == 'contact-us' ? 'active' : '' }} nav-item">
+        <a class="nav-link text-decoration-none" href="/contact-us">Contact us</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact us</a>
-      </li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Staffs</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Administrations</a>
-          <a class="dropdown-item" href="#">Faculty staff</a>
+          <a class="dropdown-item text-decoration-none" href="#">Administrations</a>
+          <a class="dropdown-item text-decoration-none" href="#">Faculty staff</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
+        <a class="nav-link text-decoration-none" href="#">Apply</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-decoration-none" href="#">Login</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
