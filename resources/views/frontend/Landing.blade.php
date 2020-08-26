@@ -28,10 +28,9 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-      </div>
+    </div>
 
       <div class="card mt-4 text-white bg-green-500" >
-       
           <div class="row m-3">
             <div class="col-4">
               <div class="list-group list-group-flush" id="list-tab" role="tablist">
@@ -52,6 +51,96 @@
               </div>
             </div>
           </div>
+      </div>
+      <div class="card m-3" style="background-image: linear-gradient(45deg, #47843c 50%, #c6d8a3 50%);">
+        <div class="card-header">
+          <h6 class="text-center text-upper">Testimonials</h6>
+          <div style="border-bottom: 2px solid rgb(7, 6, 6); margin-left: 47%;margin-right: 47%;"></div>
+        </div>
+        <div class="card-body">
+          <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+
+                <div class="row">
+                  <div class="offset-sm-2 col-sm-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Pierre-Person.jpg" alt="test" style="border-radius: 30%; height: 25em;"/>
+                  </div>
+                  <div class="offset-sm-1 col-sm-5">
+                    <p class="text-center mt-3"><strong class="text-blue-600 font-weight-bold">" This is title of the testo "</strong></p> <br>
+                    <p>
+                      this is the explaination of the person side
+                      this is the explaination of the person sidethis is the explaination of the person sidethis is the explaination of the person side
+                      this is the explaination of the person side
+                      this is the explaination of the person side
+                      this is the explaination of the person side
+                      this is the explaination of the person side
+                    </p>
+                    <div class="mt-5">
+                      <p class="font-weight-bold text-center">Shyam sundar</p>
+                      <p class="text-center text-center">CEO</p>
+                      <p class="text-center text-center">Test Organization</p>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="carousel-item">
+
+                <div class="row">
+                  <div class="offset-sm-2 col-sm-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Pierre-Person.jpg" alt="test" style="border-radius: 30%; height: 25em;"/>
+                  </div>
+                  <div class="offset-sm-1 col-sm-5">
+                    
+                    <p class="text-center mt-3"><strong class="text-blue-600 font-weight-bold">" This is title of the testo "</strong></p> <br>
+                    <p>
+                      this is the explaination of the person side
+                      this is the explaination of the person sidethis is the explaination of the person sidethis is the explaination of the person side
+                      this is the explaination of the person side
+                      this is the explaination of the person side
+                      this is the explaination of the person side
+                      this is the explaination of the person side
+                    </p>
+                    <div class="mt-5">
+                      <p class="font-weight-bold text-center">Shyam sundar</p>
+                      <p class="text-center text-center">CEO</p>
+                      <p class="text-center text-center">Test Organization</p>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="carousel-item">
+                
+                <div class="row">
+                  <div class="offset-sm-2 col-sm-5">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Pierre-Person.jpg" alt="test" style="border-radius: 30%; height: 25em;"/>
+                  </div>
+                  <div class="col-sm-5">
+                    <p class="text-center mt-3"><strong class="text-blue-600 font-weight-bold">" This is title of the testo "</strong></p> <br>
+                    <p>
+                      this is the explaination of the person side
+                      this is the explaination of the person sidethis is the explaination of the person sidethis is the explaination of the person side
+                      this is the explaination of the person side
+                      this is the explaination of the person side
+                      this is the explaination of the person side
+                      this is the explaination of the person side
+                    </p>
+                    <div class="mt-5">
+                      <p class="font-weight-bold text-center">Shyam sundar</p>
+                      <p class="text-center text-center">CEO</p>
+                      <p class="text-center text-center">Test Organization</p>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 </main>
 

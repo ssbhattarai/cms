@@ -22,7 +22,7 @@ p a:hover{
 
 .map-responsive {
     position: relative;
-    padding-bottom: 75%; 
+    padding-bottom: 50%; 
     height: 0;
     overflow: hidden;
 }
@@ -31,5 +31,5 @@ p a:hover{
     top: 0;
     left: 0;
     width: 100% !important;
-    height: 100% !important;
+    height: 80% !important;
 }
