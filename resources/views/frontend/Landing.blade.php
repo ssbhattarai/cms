@@ -30,7 +30,7 @@
         </a>
       </div>
 
-      <div class="card mt-4 text-white bg-green-600" >
+      <div class="card mt-4 text-white bg-green-500" >
        
           <div class="row m-3">
             <div class="col-4">
@@ -43,7 +43,9 @@
             </div>
             <div class="col-8">
               <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">i am home</div>
+                <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                  i am homei am homei am homei am homei am homei am homei am homei am homei am homei am homei am home
+                </div>
                 <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">i am profile</div>
                 <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">Messages</div>
                 <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">Setting</div>

@@ -2,3 +2,34 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+
+
+
+.aerrow {
+    border-bottom: 2px solid;
+    margin-right: 20em;
+    margin-left: 20em;
+}
+
+
+li a:hover{
+    color: #020602;
+}
+
+p a:hover{
+    color: #020602;
+}
+
+.map-responsive {
+    position: relative;
+    padding-bottom: 75%; 
+    height: 0;
+    overflow: hidden;
+}
+.map-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
