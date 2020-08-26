@@ -5,10 +5,11 @@ body {
 
 
 
+
 .aerrow {
     border-bottom: 2px solid;
-    margin-right: 20em;
-    margin-left: 20em;
+    margin-right: 47%;
+    margin-left: 47%;
 }
 
 
@@ -32,4 +33,12 @@ p a:hover{
     left: 0;
     width: 100% !important;
     height: 80% !important;
+}
+
+
+.event-bg {
+    background-image: url(https://www.srms.ac.in/cetr/wp-content/uploads/2017/02/background-banner.jpg);
+    background-attachment: fixed;
+    opacity: 0.8;
+
 }
