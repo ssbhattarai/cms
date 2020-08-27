@@ -14,6 +14,14 @@
         <div class="offset-1 col-sm-5">
           <h2 class="text-center font-weight-bold">Get in Touch</h2>
           <div class="aerrow mb-3"></div>
+          @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+                Session::forget('success');
+            @endphp
+        </div>
+        @endif
           <form method="POST" action="{{ url('contact/form') }}">
             @csrf
             <div class="form-group">
@@ -48,8 +56,11 @@
             <button type="submit" class="btn btn-primary text-center">Submit</button>
           </form>
         </div>
-        <div class="offset-1 col-sm-5 mt-5">
-          test
+        <div class="offset-1 col-sm-5 mt-5 text-center">
+          <strong>College name</strong> <br>
+          <p>Imadol Lalitput</p>
+          <p>981234567,&nbsp; 123456789</p>
+          <p>nascentsurya@gmail.com</p>
         </div>
       </div>
     </div>

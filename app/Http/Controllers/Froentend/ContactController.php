@@ -36,12 +36,18 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validate = $request->validate([
             'email' => 'required|email|max:255',
             'full_name' => 'required|min:10|max:255',
-            'phone_no' => 'required|numeric|min:9|max:10',
+            'phone_no' => 'required|numeric',
             'message' => 'required|min:20'
         ]);
+
+        if($validate){
+            $input = $request->all();
+            $user = Contact::create($input);
+            return back()->with('success', 'Thank You for contacting us. We will get back to you soon');
+        }
     }
 
     /**
