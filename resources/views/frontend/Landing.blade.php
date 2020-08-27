@@ -122,7 +122,7 @@
         </div>
       </div>
 
-      <div class="card m-3" style="background-image: linear-gradient(45deg, #47843c 50%, #c6d8a3 50%);">
+      <div class="card m-5" style="background-image: linear-gradient(45deg, #47843c 50%, #c6d8a3 50%);">
         <div class="card-header">
           <h6 class="text-center text-upper">Testimonials</h6>
           <div style="border-bottom: 2px solid rgb(7, 6, 6); margin-left: 47%;margin-right: 47%;"></div>

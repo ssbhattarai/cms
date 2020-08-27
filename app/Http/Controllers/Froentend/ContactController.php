@@ -36,7 +36,12 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'email' => 'required|email|max:255',
+            'full_name' => 'required|min:10|max:255',
+            'phone_no' => 'required|numeric|min:9|max:10',
+            'message' => 'required|min:20'
+        ]);
     }
 
     /**

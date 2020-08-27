@@ -31,3 +31,6 @@ Route::get('/about-us', function (){
 Route::get('/contact-us', function (){
     return view('frontend.pages.contactus');
 });
+
+// Route::post('contact-us', '');
+Route::post('contact/form', 'Froentend\ContactController@store');

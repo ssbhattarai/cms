@@ -6,8 +6,8 @@
                     <h2 class="mt-3 text-center">More About Us</h2>
                     <div class="aerrow"></div>
                     <ul class="text-center mt-3">
-                        <li><a class="text-decoration-none" href="#">Why us? </a></li>
-                        <li><a class="text-decoration-none" href="#">Contact us </a></li>
+                        <li><a class="text-decoration-none" href="/about-us">Why us? </a></li>
+                        <li><a class="text-decoration-none" href="/contact-us">Contact us </a></li>
                         <li><a class="text-decoration-none" href="#">test</a></li>
                       </ul>
                       <div class="mt-5 text-center">
