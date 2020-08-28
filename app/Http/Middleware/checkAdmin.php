@@ -20,6 +20,7 @@ class checkAdmin
     {   
         if (! $request->user()->hasRole($role)) {
             abort(401, 'This action is unauthorized.');
+            return redirect('/');
         }
         return $next($request);
     }
