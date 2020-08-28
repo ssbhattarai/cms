@@ -13,11 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+require 'admin.php';
+
+
+Auth::routes();
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -31,6 +37,10 @@ Route::get('/about-us', function (){
 Route::get('/contact-us', function (){
     return view('frontend.pages.contactus');
 });
+
+// Route::get('/login', function (){
+//     return view('frontend.pages.login');
+// });
 
 // Route::post('contact-us', '');
 Route::post('contact/form', 'Froentend\ContactController@store');
