@@ -17,8 +17,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::all();
-        return view ( 'admin.pages.alluser' )->withData ( $data );
+        // $data = User::all();
+        // $role = $data->roles->pluck('name');
+        // // $role = Auth::user()->roles->pluck('name'); 
+        // dd($role);
+
+        $data = User::with(['roles'])->get();
+        // dd($users);
+        return view ( 'admin.pages.user.alluser' )->withData ( $data );
     }
 
 
@@ -31,7 +37,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.user.create');
     }
 
     /**

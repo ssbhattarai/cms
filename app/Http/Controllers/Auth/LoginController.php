@@ -33,7 +33,7 @@ class LoginController extends Controller
         $role = Auth::user()->roles->pluck('name'); 
         switch ($role[0]) {
             case 'SUPER_ADMIN':
-                    return '/superadmin';
+                    return '/admin';
                 break;
             case 'STUDENT':
                     return '/student';
