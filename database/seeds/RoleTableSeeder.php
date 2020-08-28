@@ -17,20 +17,9 @@ class RoleTableSeeder extends Seeder
         $superadmin->name = 'SUPER_ADMIN';
         $superadmin->save();
 
-        $admin = new Role();
-        $admin->name = 'ADMIN';
-        $admin->save();
-
         $student = new Role();
         $student->name = 'STUDENT';
         $student->save();
 
-        $teacher = new Role();
-        $teacher->name = 'TEACHER';
-        $teacher->save();
-
-        $viewer = new Role();
-        $viewer->name = 'VIEWER';
-        $viewer->save();
     }
 }

@@ -37,6 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getAdminRolesAttribute()
+    {   
+        $adminRoles = ['teacher','admin'];
+        return $adminRoles;
+    }
 
     public function roles()
     {
@@ -49,6 +54,7 @@ class User extends Authenticatable
             return true;
         }
         abort(401, 'This action is unauthorized.');
+        return redirect('/');
     }
 
     public function hasAnyRole($roles)
