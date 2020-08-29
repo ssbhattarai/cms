@@ -4,22 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
 
-use Spatie\Permission\Models\Role;
-use DB;
-use Hash;
-
-
-class UserController extends Controller
-{   
-    
-    public function __construct()
-    {
-        // $this->middleware('auth');
-        // $this->middleware('admin:admin,manager,teacher');
-    }
-    
+class PermissionsController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -27,13 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::with(['roles'])->get();
-
-        return view ( 'admin.pages.user.alluser' )->withData ( $data );
+        //
     }
-
-
-    
 
     /**
      * Show the form for creating a new resource.
@@ -41,9 +23,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
-        $roles = Role::pluck('name','name')->all();
-        return view('admin.pages.user.create',compact('roles'));
+    {
+        //
     }
 
     /**

@@ -11,8 +11,8 @@ class SuperAdmin extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('admin:SUPER_ADMIN');
+        // $this->middleware('auth');
+        // $this->middleware('admin:admin,manager,teacher,viewer');
     }    
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class SuperAdmin extends Controller
      */
     public function index()
     {   
-        $user = User::find(1);
+        // $user = User::find(1);
         // dd($user->admin_roles[0]);
         return view('admin.superadmin');
     }

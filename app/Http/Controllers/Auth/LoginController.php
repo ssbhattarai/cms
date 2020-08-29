@@ -30,17 +30,23 @@ class LoginController extends Controller
      */
     public function redirectTo(){
         
-        $role = Auth::user()->roles->pluck('name'); 
-        switch ($role[0]) {
-            case 'SUPER_ADMIN':
-                    return '/admin';
-                break;
-            case 'STUDENT':
-                    return '/student';
-                break;     
-            default:
-                    return '/login'; 
-                break;
+    //     $role = Auth::user()->roles->pluck('name'); 
+
+    //     if($role[0] === 'admin' || $role[0] === 'manager' || $role[0] === 'teacher' ) {
+    //         return '/admin';
+    //     } else {
+    //     switch ($role[0]) {
+    //         case 'student':
+    //                 return '/student';
+    //             break;
+    //         default:
+    //                 return '/login'; 
+    //             break;
+    //     }
+    // }
+
+        if(Auth::user()->hasRole('admin')){
+            return '/admin';
         }
     }
     /**

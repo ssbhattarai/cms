@@ -54,7 +54,12 @@
         </button> --}}
 
                 <button class="btn btn-info"> <i class="fa fa-edit"></i></button>
-                <button class="btn btn-danger"> <i class="fa fa-trash"></i></button>
+       
+        @if ( $role = Auth::user()->roles->pluck('name'))
+                @if ($role[0] == 'admin')
+                    <button class="btn btn-danger"> <i class="fa fa-trash"></i></button>
+                    @endif
+                @endif
                     </td>
                 </tr>
                 @endforeach

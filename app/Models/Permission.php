@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model as Model;
 
 /**
- * Class Role
+ * Class Permission
  * @package App\Models
- * @version August 29, 2020, 2:07 pm UTC
+ * @version August 29, 2020, 2:09 pm UTC
  *
- * @property \App\Models\ModelHasRole $modelHasRole
- * @property \Illuminate\Database\Eloquent\Collection $permissions
+ * @property \App\Models\ModelHasPermission $modelHasPermission
+ * @property \Illuminate\Database\Eloquent\Collection $roles
  * @property string $name
  * @property string $guard_name
  */
-class Role extends Model
+class Permission extends Model
 {
 
-    public $table = 'roles';
+    public $table = 'permissions';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -54,16 +54,16 @@ class Role extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      **/
-    public function modelHasRole()
+    public function modelHasPermission()
     {
-        return $this->hasOne(\App\Models\ModelHasRole::class);
+        return $this->hasOne(\App\Models\ModelHasPermission::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function permissions()
+    public function roles()
     {
-        return $this->belongsToMany(\App\Models\Permission::class, 'role_has_permissions');
+        return $this->belongsToMany(\App\Models\Role::class, 'role_has_permissions');
     }
 }

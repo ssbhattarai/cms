@@ -20,6 +20,35 @@
               </div>
           </div>
     </div>
+    <form class="mt-3">
+        <div class="row m-3">
+            <div class=" offset-sm-1 col-sm-5">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" class="form-control" id="name"placeholder="Enter Name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                  </div> 
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="email">Password</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                  </div> 
+                  <div class="form-group">
+                    <label for="email">Confirm Password address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                  </div>      
+            </div>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
 </div>
 
 

@@ -18,10 +18,21 @@ class checkAdmin
     //* this is SOLVED!!
     public function handle($request, Closure $next, $role)
     {   
-        if (! $request->user()->hasRole($role)) {
-            abort(401, 'This action is unauthorized.');
-            // return redirect('/');
-        }
-        return $next($request);
+        // if(!Auth::check()) {
+        //     return redirect('/login');
+        // }
+
+        // if (! $request->user()->hasRole($role)) {
+        //     abort(401, 'This action is unauthorized.');
+        //     // return redirect('/');
+        // }
+        // return $next($request);
+
+        // if(Auth::user()->roles->pluck('name') !== "admin" || Auth::user()->roles->pluck('name') !== "manager"){ //Check your users' role or permission, in my case only admin role for routes
+        //     return redirect('/');
+        // }
+        // return $next($request);
+
+        
     }
 }
