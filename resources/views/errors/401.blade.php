@@ -1,4 +1,4 @@
-@include('frontend.layouts.header')
+@include('admin.layouts.header')
 
 
 <div class="text-center" style="margin-top: 20%">

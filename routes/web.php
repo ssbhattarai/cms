@@ -43,4 +43,4 @@ Route::get('/contact-us', function (){
 // });
 
 // Route::post('contact-us', '');
-Route::post('contact/form', 'Froentend\ContactController@store');
+Route::post('/contact/form', 'frontend\ContactController@store');

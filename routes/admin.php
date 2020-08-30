@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth']], function () {
 
-    
     Route::get('/student', 'StudentController@index');
     Route::get('/admin', 'ROLE\SuperAdmin@index');
     
@@ -29,6 +28,16 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/store', 'admin\RoleController@store')->name('roles.store');
             
         });
-    });
-    
+
+
+        //*  All routes for the frontend changes
+
+
+        // Route::get('image/upload','ImageUploadController@fileCreate');
+        // Route::post('image/upload/store','ImageUploadController@fileStore');
+        Route::post('sliderimage/delete','admin\frontend\SliderImages@fileDestroy')->name('sliderimage.delete');
+
+        Route::get('/sliderimage','admin\frontend\SliderImages@index');
+        Route::post('/sliderimage/store','admin\frontend\SliderImages@store')->name('sliderimage.store');
+    }); 
 });
