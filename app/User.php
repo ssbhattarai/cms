@@ -7,10 +7,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
+
 class User extends Authenticatable
 {
-    use Notifiable;
-    use HasRoles;
+    use Notifiable,HasRoles;
 
 
     /**
@@ -40,16 +40,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getAdminRolesAttribute()
-    {   
-        $adminRoles = ['teacher','admin'];
-        return $adminRoles;
-    }
+    // public function getAdminRolesAttribute()
+    // {   
+    //     $adminRoles = ['teacher','admin'];
+    //     return $adminRoles;
+    // }
 
-    public function roles()
-    {
-        return $this->belongsToMany('App\Models\Role');
-    }
+    // public function roles()
+    // {
+    //     return $this->belongsToMany('App\Models\Role');
+    // }
 
     public function setPasswordAttribute($password)
     {   

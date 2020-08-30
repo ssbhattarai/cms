@@ -14,12 +14,6 @@ use Hash;
 class UserController extends Controller
 {   
     
-    public function __construct()
-    {
-        // $this->middleware('auth');
-        // $this->middleware('admin:admin,manager,teacher');
-    }
-    
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::with(['roles'])->get();
+        $data = User::all();
 
         return view ( 'admin.pages.user.alluser' )->withData ( $data );
     }
@@ -54,7 +48,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles' => 'required'
+            ]);
+            
+            $input = $request->all();
+            $input['password'] = Hash::make($input['password']);
+            $user = User::create($input);
+            $user->assignRole($request->input('roles'));
+            return redirect()->route('users.index')
+            ->with('success','User created successfully');
     }
 
     /**

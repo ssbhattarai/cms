@@ -39,9 +39,13 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
                     <td> {{ $item->email }} </td>
-                    @foreach ($item->roles as $role)
-                    <td>{{ $role->name }}</td> 
-                    @endforeach
+                    <td>
+                        @if(!empty($item->getRoleNames()))
+                        @foreach($item->getRoleNames() as $v)
+                        <label class="badge badge-success">{{ $v }}</label>
+                        @endforeach
+                        @endif
+                    </td> 
                     
                     <td>
                         {{-- <button class="edit-modal btn btn-info"
@@ -55,11 +59,11 @@
 
                 <button class="btn btn-info"> <i class="fa fa-edit"></i></button>
        
-        @if ( $role = Auth::user()->roles->pluck('name'))
-                @if ($role[0] == 'admin')
+        {{-- @if ( $role = Auth::user()->roles->pluck('name')) --}}
+                {{-- @if ($role[0] == 'admin') --}}
                     <button class="btn btn-danger"> <i class="fa fa-trash"></i></button>
-                    @endif
-                @endif
+                    {{-- @endif --}}
+                {{-- @endif --}}
                     </td>
                 </tr>
                 @endforeach
