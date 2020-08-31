@@ -19,13 +19,7 @@
                             <h2 class="text-center">About US</h2>
                             <div class="aerrow"></div>
                             <div class="mt-4">
-                            <p>As students or their parents begin to explore their postsecondary education options, they may begin to wonder about the difference between colleges and universities. Many people assume that college refers to a private institution and a university refers to a state-funded school. Other people may think that a university provides a better education than a college. In reality, the difference between a college and a university is much more difficult to define.</p> <br>
-                            <p>A college is a smaller institution that typically offers undergraduate degrees. Some colleges, such as community colleges and junior colleges, may offer only two-year degrees. Most colleges offer bachelor’s degrees, and some colleges also have associate degrees.</p>
-                           <br>
-                            <h2 class="font-weight-bold">Why Us?</h2> <br>
-                            <p>A college is a smaller institution that typically offers undergraduate degrees. Some colleges, such as community colleges and junior colleges, may offer only two-year degrees. Most colleges offer bachelor’s degrees, and some colleges also have associate degrees.</p>
-                            <br><h2 class="font-weight-bold">Placement</h2> <br>
-                            <p>A college is a smaller institution that typically offers undergraduate degrees. Some colleges, such as community colleges and junior colleges, may offer only two-year degrees. Most colleges offer bachelor’s degrees, and some colleges also have associate degrees.</p>
+                            {!! $aboutus->about_us !!}
                         </div>
                         </div>
                         <div class="col-sm-4 mt-3">

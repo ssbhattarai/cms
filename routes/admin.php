@@ -32,12 +32,13 @@ Route::group(['middleware' => ['auth']], function () {
 
         //*  All routes for the frontend changes
 
-
-        // Route::get('image/upload','ImageUploadController@fileCreate');
-        // Route::post('image/upload/store','ImageUploadController@fileStore');
         Route::post('sliderimage/delete','admin\frontend\SliderImages@fileDestroy')->name('sliderimage.delete');
-
         Route::get('/sliderimage','admin\frontend\SliderImages@index');
         Route::post('/sliderimage/store','admin\frontend\SliderImages@store')->name('sliderimage.store');
+
+        Route::get('/about-us','admin\frontend\AboutusController@index');
+        Route::post('/about-us/store','admin\frontend\AboutusController@store')->name('aboutus.store');
+
+
     }); 
 });

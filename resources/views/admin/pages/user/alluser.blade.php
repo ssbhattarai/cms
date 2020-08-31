@@ -29,8 +29,11 @@
                     <th class="font-weignt-bold">#</th>
                     <th class="font-weignt-bold">Name</th>
                     <th class="font-weignt-bold">Email</th>
+                    <th class="font-weignt-bold">Created At</th>
                     <th class="font-weignt-bold">Role</th>
                     <th class="font-weignt-bold">Actions</th>
+                    
+
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +42,7 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
                     <td> {{ $item->email }} </td>
+                    <td> {{ $item->created_at }} </td>
                     <td>
                         @if(!empty($item->getRoleNames()))
                         @foreach($item->getRoleNames() as $v)

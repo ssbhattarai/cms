@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use DB;
+use App\Models\About;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,10 @@ class ViewServiceProvider extends ServiceProvider
         view()->composer('frontend.Landing', function ($view) {
             $view->with('SliderImages',  DB::table('image_sliders')->get());
 
+        });
+
+        view()->composer('frontend.pages.aboutus', function ($view){
+            $view->with('aboutus', DB::table('abouts')->orderBy('id', 'desc')->first());
         });
     }
 }
