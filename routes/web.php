@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\ImageSlider;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +20,9 @@ Auth::routes();
 
 
 Route::get('/', function () {
-    return view('welcome');
+    $images = ImageSlider::all();
+   return view('frontend.Landing', ['images' => $images]);
+    // return view('welcome');
 });
 
 

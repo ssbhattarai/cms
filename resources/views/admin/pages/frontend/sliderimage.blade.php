@@ -13,13 +13,13 @@
 
     </div>
 
-    <div class="m-3" style="display: inline-flex">
+    <div class="m-3">
+        <div class = "container-fluid">
             @foreach ($allImages as $image)
-                <div class="">
-                    <img src="{{url('/frontend/imageslider/')}}/{{ $image->filename }}" alt="image-slider"  class="img-fluid" width="50%">
-                </div>
-            
+                <img src="{{url('/frontend/imageslider/')}}/{{ $image->filename }}" alt="image-slider"  class="img-fluid" width="30%">
             @endforeach
+        </div>
+
     </div>
 </div>
 

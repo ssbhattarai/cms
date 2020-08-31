@@ -10,7 +10,12 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-          <div class="carousel-item active">
+          @foreach ($SliderImages as $key => $slider)
+        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+        <img src="{{ asset('frontend/imageslider') }}/{{ $slider->filename }}" class="d-block w-100" alt="SLider Image" style="height: 250px;">
+          </div>
+          @endforeach
+          {{-- <div class="carousel-item">
             <img src="https://images.unsplash.com/photo-1534840641466-b1cdb8fb155e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" class="d-block w-100" alt="..." style="height: 250px;">
           </div>
           <div class="carousel-item">
@@ -18,7 +23,7 @@
           </div>
           <div class="carousel-item">
             <img src="https://images.unsplash.com/photo-1534840641466-b1cdb8fb155e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" class="d-block w-100" alt="..." style="height: 250px;">
-          </div>
+          </div> --}}
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
