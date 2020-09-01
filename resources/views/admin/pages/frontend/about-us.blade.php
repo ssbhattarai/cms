@@ -4,7 +4,14 @@
 
 <div class="content-wrapper">
     <div class="container mt-5">
-        <h1>About us</h1>
+        <nav aria-label="breadcrumb" class="m-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+              <li class="breadcrumb-item active" aria-current="page">About Us</li>
+            </ol>
+          </nav>
+          
+        <h4 class="text-center mt-3">About us</h4>
 
         @if (count($errors) > 0)
       <div class="alert alert-danger">
@@ -21,7 +28,7 @@
             <textarea id="mytextarea" name="about_us">
                 {{ $getAboutus->about_us }}
             </textarea>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary btn-lg mt-3 align-content-center" style="border-radius: 20px;">Create <i class="fa fa-plus"></i></button>
         </form>
     </div>
 </div>
