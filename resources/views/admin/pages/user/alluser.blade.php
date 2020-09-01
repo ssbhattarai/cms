@@ -42,7 +42,9 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
                     <td> {{ $item->email }} </td>
-                    <td> {{ $item->created_at }} </td>
+                    <td>
+                        <input data-id="{{$item->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Disable" {{ $item->status ? 'checked' : '' }}>
+                     </td>
                     <td>
                         @if(!empty($item->getRoleNames()))
                         @foreach($item->getRoleNames() as $v)
@@ -99,4 +101,22 @@
         ]
       });
   } );
+
+
+  $(function() {
+    $('.toggle-class').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0; 
+        var user_id = $(this).data('id'); 
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '{{ route('user.status')}}',
+            data: {'status': status, 'user_id': user_id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
    </script>

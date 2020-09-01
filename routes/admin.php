@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['prefix' => 'user'], function() {
             Route::get('/create', 'admin\UserController@create')->name('users.create');
             Route::post('/store', 'admin\UserController@store')->name('users.store');
+            Route::get('changeStatus', 'admin\UserController@changeStatus')->name('user.status');
             
         });
 

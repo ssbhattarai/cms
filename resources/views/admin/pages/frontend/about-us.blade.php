@@ -26,7 +26,10 @@
     <form method="post" action = "{{ route('aboutus.store')}}">
         @csrf
             <textarea id="mytextarea" name="about_us">
-                {{ $getAboutus->about_us }}
+              @if ($getAboutus)
+              {{ $getAboutus->about_us }}  
+              @endif
+                
             </textarea>
             <button type="submit" class="btn btn-primary btn-lg mt-3 align-content-center" style="border-radius: 20px;">Create <i class="fa fa-plus"></i></button>
         </form>

@@ -19,7 +19,12 @@
                             <h2 class="text-center">About US</h2>
                             <div class="aerrow"></div>
                             <div class="mt-4">
-                            {!! $aboutus->about_us !!}
+                            @if ($aboutus)
+                                {!! $aboutus->about_us !!}
+                            @else
+                                <h2  class="font-weight-bold" style="color: rgb(117, 39, 39)"> {{ "There is no data" }}</h2>
+                            @endif
+                            
                         </div>
                         </div>
                         <div class="col-sm-4 mt-3">

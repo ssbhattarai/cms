@@ -87,15 +87,15 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Users
+                Home Page
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/admin/user" class="nav-link">
+                <a href="/admin/sliderimage" class="nav-link">
                   <i class="far fa-user nav-icon"></i>
-                  <p>Users</p>
+                  <p>Top Slider</p>
                 </a>
               </li>
 
@@ -106,6 +106,14 @@
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/about-us" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                About Us
+              </p>
+            </a>
           </li>
       </nav>
       <!-- /.sidebar-menu -->

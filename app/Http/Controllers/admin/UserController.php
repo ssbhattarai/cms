@@ -54,8 +54,9 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'password' => 'required|same:confirm_password',
+            'roles' => 'required',
+            // 'status' => 'required',
             ]);
             
             $input = $request->all();
@@ -109,5 +110,16 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function changeStatus(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->status = $request->status;
+        $user->save();
+  
+        return response()->json(['success'=>'Status change successfully.']);
     }
 }
