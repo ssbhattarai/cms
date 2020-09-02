@@ -31,7 +31,10 @@ class LoginController extends Controller
     public function redirectTo(){
         
         if(Auth::check()){
+            $status = Auth::user()->status;
+            // dd($status);
             $role = Auth::user()->hasRole('Student'); 
+
             
             if($role) {
                 return '/student';

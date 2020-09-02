@@ -43,7 +43,7 @@
                     <td>{{ $item->name }}</td>
                     <td> {{ $item->email }} </td>
                     <td>
-                        <input data-id="{{$item->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Disable" {{ $item->status ? 'checked' : '' }}>
+                        <input data-id="{{$item->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Disable" {{ $item->status ? 'checked' : '' }} data-size="small">
                      </td>
                     <td>
                         @if(!empty($item->getRoleNames()))
@@ -79,6 +79,7 @@
                     <th>ID</th>
                     <th>Full Name</th>
                     <th>Email</th>
+                    <th>Status</th>
                     <th>Role</th>
                     <th>Action</th>
                 </tr>
@@ -94,12 +95,14 @@
 
 <script>
     $(document).ready(function() {
+        // $('#table').DataTable();
+
       $('#table').DataTable({
         "columnDefs": [
-            { "searchable": false, "targets": 4 },
-            { "orderable": false, "targets": 4 }
+            { "searchable": false, "targets": 5 },
+            { "orderable": false, "targets": 5}
         ]
-      });
+       });
   } );
 
 

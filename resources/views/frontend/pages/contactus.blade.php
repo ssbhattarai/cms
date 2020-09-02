@@ -22,7 +22,9 @@
             @endphp
         </div>
         @endif
-          <form method="POST" action="{{ url('contact/form') }}">
+        {{-- {{ url('contact/form') }} --}}
+        <div id="errors"></div>
+          <form method="POST" action="" id="contact_us">
             @csrf
             <div class="form-group">
               <label for="email">Email</label>
@@ -53,7 +55,7 @@
               @endif
             </div>
             
-            <button type="submit" class="btn btn-primary text-center">Submit</button>
+            <button type="submit" class="btn btn-primary text-center" id="send_form">Submit</button>
           </form>
         </div>
         <div class="offset-1 col-sm-5 mt-5 text-center">
@@ -67,3 +69,38 @@
 </div>
 
 @include('frontend.layouts.footer')
+
+
+<script>
+  $(document).ready(function(){
+    $('#send_form').click(function(e){
+      e.preventDefault();
+      console.log("you clicled me");
+
+      $('#send_form').html('sending...');
+
+      $.ajax({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "{{ url('contact/form') }}",
+        method: 'post',
+        data: $('#contact_us').serialize(),
+        success: function(response ) {
+            $('#send_form').html('Submitted');
+            document.getElementById("contact_us").reset();
+            $('#send_form').html('Submit');
+        },
+        error: function (data) {
+                var errors = data.responseJSON;
+                // document.getElementById('contact_us').innerHTML(errors);
+                $('#errors').html(errors);
+                console.log(errors.errors);
+                $('#send_form').html('ReSubmit');
+            }
+      });
+    });
+  });
+
+
+
+</script>
