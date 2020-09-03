@@ -22,9 +22,11 @@
             @endphp
         </div>
         @endif
-        {{-- {{ url('contact/form') }} --}}
-        <div id="errors"></div>
+
+         
+
           <form method="POST" action="" id="contact_us">
+            <span id="errors" style="color: red;" class="font-weight-bold"></span>
             @csrf
             <div class="form-group">
               <label for="email">Email</label>
@@ -87,15 +89,13 @@
         data: $('#contact_us').serialize(),
         success: function(response ) {
             $('#send_form').html('Submitted');
+            $("#send_form").attr("disabled", true);
             document.getElementById("contact_us").reset();
-            $('#send_form').html('Submit');
         },
         error: function (data) {
                 var errors = data.responseJSON;
-                // document.getElementById('contact_us').innerHTML(errors);
-                $('#errors').html(errors);
-                console.log(errors.errors);
-                $('#send_form').html('ReSubmit');
+                $('#errors').html("Validation Error !!");
+                $('#send_form').html('Submit');
             }
       });
     });
