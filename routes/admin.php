@@ -14,6 +14,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'admin'], function() {
 
+        Route::get('users/export/', 'admin\UserController@export')->name('users.export');
+
+
         Route::get('/user', 'admin\UserController@index')->name('users.index');
         Route::get('/roles', 'admin\RoleController@index')->name('roles.index');
         

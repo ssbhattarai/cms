@@ -19,6 +19,11 @@
             <button class="btn btn-success float-right">
                 Create &nbsp; <i class="fa fa-plus" aria-hidden="true"></i>
             </button></a>
+
+            <a href="{{ route('users.export') }}">
+                <button class="btn btn-secondary">
+                    Export &nbsp; <i class="fa fa-download" aria-hidden="true"></i>
+                </button></a>
           </div>
       </div>
     <div class="container mt-5">

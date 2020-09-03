@@ -65,7 +65,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="/admin/user/create" class="nav-link">
+                <a href="/admin/roles/create" class="nav-link">
                   <i class="far fa-user nav-icon"></i>
                   <p>Create Roles</p>
                 </a>

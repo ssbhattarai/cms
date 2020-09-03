@@ -4,6 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\User;
 
 use Spatie\Permission\Models\Role;
@@ -121,5 +125,11 @@ class UserController extends Controller
         $user->save();
   
         return response()->json(['success'=>'Status change successfully.']);
+    }
+
+
+    public function export() 
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 }

@@ -10,6 +10,10 @@
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Dashboard</h1>
           </div><!-- /.col -->
+          @foreach ($rolesWithuserCount as $item)
+              {{ $item->name }}
+              {{$item->users_count }}
+          @endforeach
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -20,7 +24,7 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
+    
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -30,14 +34,14 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{ $totaluser }}</h3>
 
-                <p>New Orders</p>
+                <p>User Registrations</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/admin/user" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -89,6 +93,8 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
+
+    
     <!-- /.content -->
   </div>
 

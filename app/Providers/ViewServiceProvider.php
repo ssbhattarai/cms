@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use DB;
 use App\Models\About;
+use App\User;
+use Spatie\Permission\Models\Role;
+
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -34,6 +37,25 @@ class ViewServiceProvider extends ServiceProvider
 
         view()->composer('frontend.pages.aboutus', function ($view){
             $view->with('aboutus', DB::table('abouts')->orderBy('id', 'desc')->first());
+        });
+
+        view()->composer('admin.superadmin', function ($view){
+            $allUser = DB::table('users')->count();
+           
+            // $students = User::whereHas(
+            //     'roles', function($q){
+            //         $names = Role::pluck('name')->toArray();
+            //         $q->select('name')->groupBy($names);
+            //     }
+            // )->count();
+            $rolesWithUsers = Role::withCount('users')->get();
+
+            // dd($rolesWithUsers);
+            $view->with([
+                'totaluser' => $allUser,
+                'rolesWithuserCount' => $rolesWithUsers
+                // 'totalAdminUser' => $allAdmin
+            ]);
         });
     }
 }
