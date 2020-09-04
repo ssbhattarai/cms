@@ -41,19 +41,14 @@ class ViewServiceProvider extends ServiceProvider
 
         view()->composer('admin.superadmin', function ($view){
             $allUser = DB::table('users')->count();
-           
-            // $students = User::whereHas(
-            //     'roles', function($q){
-            //         $names = Role::pluck('name')->toArray();
-            //         $q->select('name')->groupBy($names);
-            //     }
-            // )->count();
             $rolesWithUsers = Role::withCount('users')->get();
+            
+            // $all_users_with_all_their_roles = User::with('roles')->get();
 
-            // dd($rolesWithUsers);
+            // dd($all_users_with_all_their_roles->role->name);
             $view->with([
                 'totaluser' => $allUser,
-                'rolesWithuserCount' => $rolesWithUsers
+                'rolesWithuserCount' => $rolesWithUsers,
                 // 'totalAdminUser' => $allAdmin
             ]);
         });

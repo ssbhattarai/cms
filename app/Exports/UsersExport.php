@@ -46,7 +46,7 @@ class UsersExport implements FromCollection, ShouldAutoSize, WithHeadings, WithS
     * @return \Illuminate\Support\Collection
     */
     public function collection()
-    {
+    {   
         return User::all();
     }
 

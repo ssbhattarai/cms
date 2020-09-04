@@ -68,7 +68,7 @@
             <span class="glyphicon glyphicon-trash"></span> Delete
         </button> --}}
 
-                <button class="btn btn-info"> <i class="fa fa-edit"></i></button>
+               <a href=""><button class="btn btn-info"> <i class="fa fa-edit"></i></button> </a> 
        
         {{-- @if ( $role = Auth::user()->roles->pluck('name')) --}}
                 {{-- @if ($role[0] == 'admin') --}}
