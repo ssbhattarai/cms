@@ -19,11 +19,28 @@
             <button class="btn btn-success float-right">
                 Create &nbsp; <i class="fa fa-plus" aria-hidden="true"></i>
             </button></a>
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Export
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <a class="dropdown-item" href="{{ route('users.exportexcel') }}">
+                    <i class="far fa-file-excel"></i>
+                    &nbsp;
+                    Excel Export</a>
+                  <a class="dropdown-item" href="{{ route('users.exportcsv')}}">
+                    <i class="fas fa-file-csv"></i>
+                    &nbsp;
+                      CSV
+                    </a>
 
-            <a href="{{ route('users.export') }}">
-                <button class="btn btn-secondary">
-                    Export &nbsp; <i class="fa fa-download" aria-hidden="true"></i>
-                </button></a>
+                    {{-- <a class="dropdown-item" href="#">
+                        <i class="far fa-file-pdf"></i>
+                        &nbsp;
+                          PDF
+                    </a> --}}
+                </div>
+              </div>
           </div>
       </div>
     <div class="container mt-5">
@@ -68,7 +85,7 @@
             <span class="glyphicon glyphicon-trash"></span> Delete
         </button> --}}
 
-               <a href=""><button class="btn btn-info"> <i class="fa fa-edit"></i></button> </a> 
+    {{-- <a href="{{ route('')}}"><button class="btn btn-info"> <i class="fa fa-edit"></i></button> </a>  --}}
        
         {{-- @if ( $role = Auth::user()->roles->pluck('name')) --}}
                 {{-- @if ($role[0] == 'admin') --}}

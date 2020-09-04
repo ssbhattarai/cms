@@ -132,8 +132,16 @@ class UserController extends Controller
     }
 
 
-    public function export() 
+    public function exportExcel() 
     {
         return Excel::download(new UsersExport, 'users.xlsx');
     }
+
+    public function exportCSV()
+    {
+        return Excel::download(new UsersExport, 'users.csv', \Maatwebsite\Excel\Excel::CSV);
+    }
+
+    
+
 }

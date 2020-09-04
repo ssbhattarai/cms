@@ -14,7 +14,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'admin'], function() {
 
-        Route::get('users/export/', 'admin\UserController@export')->name('users.export');
+        Route::get('users/exportexcel/', 'admin\UserController@exportExcel')->name('users.exportexcel');
+        Route::get('users/exportcsv/', 'admin\UserController@exportCSV')->name('users.exportcsv');
 
 
         Route::get('/user', 'admin\UserController@index')->name('users.index');

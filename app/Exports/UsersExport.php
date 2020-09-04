@@ -51,6 +51,7 @@ class UsersExport implements FromCollection, ShouldAutoSize, WithHeadings, WithS
             ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
             ->select('users.id', 'users.name', 'users.email', 'users.status', 'roles.name as Role', 'users.created_At')
             ->get();
+            
         return $users;
         // dd($users);
     }
