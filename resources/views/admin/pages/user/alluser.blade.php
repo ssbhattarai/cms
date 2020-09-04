@@ -54,8 +54,6 @@
                     <th class="font-weignt-bold">Created At</th>
                     <th class="font-weignt-bold">Role</th>
                     <th class="font-weignt-bold">Actions</th>
-                    
-
                 </tr>
             </thead>
             <tbody>
@@ -132,7 +130,7 @@
     $('.toggle-class').change(function() {
         var status = $(this).prop('checked') == true ? 1 : 0; 
         var user_id = $(this).data('id'); 
-         
+         console.log(status);
         $.ajax({
             type: "GET",
             dataType: "json",

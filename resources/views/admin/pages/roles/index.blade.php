@@ -4,6 +4,24 @@
 
 
 <div class="content-wrapper">
+    <nav aria-label="breadcrumb" class="m-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Roles</li>
+        </ol>
+      </nav>
+      <div class="card m-3">
+        <div class="card-header">
+            <i class="fab fa-critical-role"></i> Roles
+          <h4 class="text-center">Roles List</h4>
+
+        <a href="{{ route('roles.create') }}">
+          <button class="btn btn-success float-right">
+              Create &nbsp; <i class="fa fa-plus" aria-hidden="true"></i>
+          </button></a>
+
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-lg-12 margin-tb">

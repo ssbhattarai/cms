@@ -18,6 +18,18 @@
 </div>
 
 <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+
+<!-- jQuery -->
+{{-- <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script> --}}
+<!-- Bootstrap 4 -->
+{{-- <script src=" {{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script> --}}
+<!-- ChartJS -->
+{{-- <script src=" {{ asset('plugins/chart.js/Chart.min.js')}}"></script> --}}
+<!-- jQuery Knob Chart -->
+{{-- <script src=" {{ asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script> --}}
+<!-- daterangepicker -->
+{{-- <script src="{{ asset('plugins/moment/moment.min.js')}}"></script> --}}
+<!-- overlayScrollbars -->
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <script src="{{ asset('dist/js/adminlte.js')}}"></script>
 <script src="{{ asset('dist/js/demo.js')}}"></script>
