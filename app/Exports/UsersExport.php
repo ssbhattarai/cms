@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-
+use DB;
 
 class UsersExport implements FromCollection, ShouldAutoSize, WithHeadings, WithStyles
 {   
@@ -18,12 +18,11 @@ class UsersExport implements FromCollection, ShouldAutoSize, WithHeadings, WithS
     {
         return [
             'ID',
-            'User Name',
+            'Full Name',
             'Email',
-            'Test',
             'Status',
-            'Created At',
-            'Updated At'
+            'Role',
+            'Created At'
         ];
     }
 
@@ -47,7 +46,13 @@ class UsersExport implements FromCollection, ShouldAutoSize, WithHeadings, WithS
     */
     public function collection()
     {   
-        return User::all();
+        $users = DB::table('users')
+            ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+            ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
+            ->select('users.id', 'users.name', 'users.email', 'users.status', 'roles.name as Role', 'users.created_At')
+            ->get();
+        return $users;
+        // dd($users);
     }
 
 
