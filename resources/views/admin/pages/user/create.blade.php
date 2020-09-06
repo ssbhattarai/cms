@@ -1,5 +1,6 @@
 
 @include('admin.layouts.header')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css" integrity="sha512-p4vIrJ1mDmOVghNMM4YsWxm0ELMJ/T0IkdEvrkNHIcgFsSzDi/fV7YxzTzb3mnMvFPawuIyIrHcpxClauEfpQg==" crossorigin="anonymous" />
 @include('admin.layouts.navbar')
 @include('admin.layouts.sidebar')
 
@@ -41,13 +42,13 @@
           </div>
           <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="email" placeholder="Enter email" name="email">
-            @if ($errors->has('name'))
-                      <span class="text-danger">{{ $errors->first('name') }}</span>
+            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" placeholder="Enter email" name="email">
+            @if ($errors->has('email'))
+                      <span class="text-danger">{{ $errors->first('email') }}</span>
             @endif
           </div>
           <div class="form-group">
-            <label for="roles">Example multiple select</label>
+            <label for="roles">Select Role</label>
             <select multiple class="form-control {{ $errors->has('roles') ? 'is-invalid' : '' }}" id="roles" name="roles">
               @foreach ($roles as $role)
                 <option>{{ $role }}</option>
@@ -62,6 +63,9 @@
           <div class="form-group">
             <label for="password">Password</label>
           <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password" placeholder="Enter Password" name="password">
+          <small id="passwordHelpBlock" class="form-text text-muted">
+            Password must contain at least 6 characters, numbers and both uppercase and lowercase letters and one Special Character.
+          </small>
           @if ($errors->has('password'))
             <span class="text-danger">{{ $errors->first('password') }}</span>
           @endif
@@ -69,7 +73,36 @@
           <div class="form-group">
             <label for="confirmPassword">Confirm Password</label>
             <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="confirmPassword" placeholder="Confirm Password" name="confirm_password">
+            
           </div>
+          <div class="form-group">
+        <label for="dob">Date Of Birth</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="dob">
+            <i class="far fa-calendar-alt"></i>
+          </span>
+        </div>
+           <input type="text" class="form-control {{ $errors->has('dob') ? 'is-invalid' : '' }}" 
+           data-date-format="yyyy/mm/dd"
+           data-provide="datepicker" placeholder="Date Of Birth"
+           name="dob"
+           autocomplete="off"
+           >
+           @if ($errors->has('dob'))
+            <span class="text-danger">{{ $errors->first('dob') }}</span>
+           @endif
+      </div>
+    </div>
+
+      
+    <label for="phone">Phone Number</label>
+            <input type="text" class="form-control {{ $errors->has('mobile_number') ? 'is-invalid' : '' }}" id="phone" placeholder="Enter Phone Number" name="mobile_number">
+            @if ($errors->has('mobile_number'))
+              <span class="text-danger">{{ $errors->first('mobile_number') }}</span>
+            @endif
+          </div>
+
 
           <div class="form-check">
             <input type="checkbox" class="form-check-input" id="status" name="status">
@@ -84,3 +117,9 @@
 
 
 @include('admin.layouts.footer')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
+<script>
+  $('.datepicker').datepicker({
+    language: 'NP'
+  });
+</script>

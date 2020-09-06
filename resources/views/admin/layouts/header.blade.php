@@ -10,11 +10,7 @@
   <!-- Font Awesome -->
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}} ">
-  <!-- Tempusdominus Bbootstrap 4 -->
-  {{-- <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}"> --}}
-  <!-- iCheck -->
-  {{-- <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}"> --}}
-  <!-- Theme style -->
+
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">

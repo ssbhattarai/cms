@@ -29,7 +29,6 @@ class UserController extends Controller
     public function index()
     {
         $data = User::all();
-
         return view ( 'admin.pages.user.alluser' )->withData ( $data );
     }
 
@@ -54,21 +53,33 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required',
+    {   
+       
+        $isValidate = $this->validate($request, [
+            'name' => 'required|min:5',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm_password',
+            'password' => ['required', 
+               'min:6', 
+               'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/', 
+               'same:confirm_password'
+            ],
+            'mobile_number' => 'required|size:10',
+            'dob' => 'required',
             'roles' => 'required',
+
             // 'status' => 'required',
             ]);
+
+                $input = $request->all();
+                $input['password'] = Hash::make($input['password']);
+                $user = User::create($input);
+                $user->assignRole($request->input('roles'));
+                return redirect()->route('users.index')
+                ->with('success','User created successfully');
             
-            $input = $request->all();
-            $input['password'] = Hash::make($input['password']);
-            $user = User::create($input);
-            $user->assignRole($request->input('roles'));
-            return redirect()->route('users.index')
-            ->with('success','User created successfully');
+            
+
+            
     }
 
     /**

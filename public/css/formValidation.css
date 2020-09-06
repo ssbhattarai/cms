@@ -1,0 +1,27 @@
+.has-success .form-control {
+    border-color: #28a745;
+    padding-right: calc(1.5em + .75rem);
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
+
+.has-danger .form-control {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + .75rem);
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
+
+.form-group .text-help {
+    color: #dc1d34;
+}
+
+.inline-label label{
+    display: inline;
+}
+
+.pristine-error {
+    display: table;
+}

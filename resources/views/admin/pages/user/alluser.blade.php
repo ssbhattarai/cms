@@ -44,6 +44,11 @@
           </div>
       </div>
     <div class="container mt-5">
+      @if ($message = Session::get('success'))
+          <div class="alert alert-success">
+            <p>{{ $message }}</p>
+      </div>
+        @endif
         <div class="table-responsive">
         <table class="table table-striped table-bordered mr-3" id="table" style="width:100%">
             <thead>
@@ -120,6 +125,7 @@
       $('#table').DataTable({
         "columnDefs": [
             { "searchable": false, "targets": 5 },
+            { "searchable": false, "targets": 3 },
             { "orderable": false, "targets": 5}
         ]
        });

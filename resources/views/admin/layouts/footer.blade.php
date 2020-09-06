@@ -18,6 +18,7 @@
 </div>
 
 <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/pristine.js') }}"></script>
 
 <!-- jQuery -->
 {{-- <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script> --}}

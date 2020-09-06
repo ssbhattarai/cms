@@ -26,5 +26,29 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+
+    public function redirectTo(){
+        
+        if(Auth::check()){
+            $status = Auth::user()->status;
+            // dd($status);
+            $role = Auth::user()->hasRole('Student'); 
+
+            
+            if($role) {
+                return '/student';
+            } else {
+                return '/admin';
+            }
+        }
+        return '/login';
+    }
+
+
+    protected function credentials(\Illuminate\Http\Request $request)
+    {
+        //return $request->only($this->username(), 'password');
+        return ['email' => $request->email, 'password' => $request->password, 'status' => 1];
+    }
 }

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\User;
+// use App\Http\Controllers\Auth\Request;
 
 class LoginController extends Controller
 {
@@ -52,13 +54,14 @@ class LoginController extends Controller
         return ['email' => $request->email, 'password' => $request->password, 'status' => 1];
     }
 
-    // protected $redirectTo = RouteServiceProvider::HOME;
 
-
-        // if(Auth::user()->hasRole('admin')){
-        //     return '/admin';
-        // }
-    // }
+    function authenticated(\Illuminate\Http\Request $request, $user)
+    {
+        $user->last_login = Carbon::now('Asia/Kathmandu')->toDateTimeString();
+        $user->last_login_ip = $request->getClientIp();
+        $user->save();
+    }
+    
     /**
      * Create a new controller instance.
      *

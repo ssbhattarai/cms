@@ -13,6 +13,7 @@ Route::group(['middleware' => ['auth']], function () {
     
 
     Route::group(['prefix' => 'admin'], function() {
+        
 
         Route::get('users/exportexcel/', 'admin\UserController@exportExcel')->name('users.exportexcel');
         Route::get('users/exportcsv/', 'admin\UserController@exportCSV')->name('users.exportcsv');
@@ -22,6 +23,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/roles', 'admin\RoleController@index')->name('roles.index');
         
         Route::group(['prefix' => 'user'], function() {
+
+            Route::get('/edit-me', function (){
+                return view('admin.pages.user.edit');
+            });
+
             Route::get('/create', 'admin\UserController@create')->name('users.create');
             Route::post('/store', 'admin\UserController@store')->name('users.store');
             Route::get('/edit', 'admin\UserController@edit')->name('users.edit');
