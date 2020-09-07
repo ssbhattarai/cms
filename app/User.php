@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     use Notifiable,HasRoles;
 
-
+    // vendor\laravel\framework\src\Illuminate\Foundation\Auth\AuthenticatesUsers.php 
     /**
      * The attributes that are mass assignable.
      *

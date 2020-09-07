@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\View;
 
 use App\User;
 
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use PDF;
 
 
 class UserController extends Controller
@@ -29,7 +31,7 @@ class UserController extends Controller
     public function index()
     {
         $data = User::all();
-        return view ( 'admin.pages.user.alluser' )->withData ( $data );
+        return view ( 'admin.pages.user.alluser', compact('data') );
     }
 
 
@@ -90,7 +92,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.pages.user.show', compact('user'));
     }
 
     /**
@@ -153,6 +156,26 @@ class UserController extends Controller
         return Excel::download(new UsersExport, 'users.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
+
+    public function createPDF($id) {
+        // retreive all records from db
+        $user = User::find($id);
+        // share data to view
+        // view()->share('user',$user);
+
+        // $pdf = PDF::loadView('admin.pages.user.user_pdf', $user);
+        // return $pdf->download('user.pdf');
+        // $pdf = PDF::loadView('admin.pages.user.user_pdf', $data);
+  
+        // download PDF file with download method
+        // return $pdf->download('user.pdf');
+        // $data = ['title' => 'Welcome to ItSolutionStuff.com'];
+        View::share('user', $user);
+        $pdf = PDF::loadView('admin.pages.user.user_pdf', $user);
+
+        return $pdf->download('user.pdf');
+
+      }
     
 
 }

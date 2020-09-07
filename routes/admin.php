@@ -28,7 +28,10 @@ Route::group(['middleware' => ['auth']], function () {
                 return view('admin.pages.user.edit');
             });
 
+            Route::get('/{id}/pdf','admin\UserController@createPDF')->name('users.pdf');
+
             Route::get('/create', 'admin\UserController@create')->name('users.create');
+            Route::get('/show/{id}', 'admin\UserController@show')->name('users.show');
             Route::post('/store', 'admin\UserController@store')->name('users.store');
             Route::get('/edit', 'admin\UserController@edit')->name('users.edit');
             Route::get('/changestatus', 'admin\UserController@changeStatus')->name('user.status');

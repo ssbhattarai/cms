@@ -87,8 +87,10 @@
             data-info="{{$item->id}},{{$item->first_name}},{{$item->last_name}},{{$item->email}},{{$item->gender}},{{$item->country}},{{$item->salary}}">
             <span class="glyphicon glyphicon-trash"></span> Delete
         </button> --}}
-
-    {{-- <a href="{{ route('')}}"><button class="btn btn-info"> <i class="fa fa-edit"></i></button> </a>  --}}
+      <a href="{{ route('users.show', $item->id) }}"> <button type="button" class="btn btn-primary">
+          <i class="fas fa-eye"></i>
+        </button> </a>
+    <a href="#"><button class="btn btn-info"> <i class="fa fa-edit"></i></button> </a> 
        
         {{-- @if ( $role = Auth::user()->roles->pluck('name')) --}}
                 {{-- @if ($role[0] == 'admin') --}}
@@ -111,6 +113,7 @@
             </tfoot>
         </table>
         </div>
+
         </div>
 </div>
 
