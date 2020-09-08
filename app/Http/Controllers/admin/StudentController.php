@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use PDF;
 
 class StudentController extends Controller
 {
@@ -51,9 +52,10 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show($id)
     {
-        //
+        $student = Student::find($id);
+        return view('admin.pages.student.show', compact('student'));
     }
 
     /**
@@ -88,5 +90,14 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+    }
+
+    public function studentPDF($id) 
+    {
+        $student = Student::find($id);
+        $pdf = PDF::loadView('admin.pages.student.student_pdf', compact('student'));
+        
+        return $pdf->download($student->name.'.pdf');
+
     }
 }

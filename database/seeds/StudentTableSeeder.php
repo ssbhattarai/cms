@@ -27,7 +27,7 @@ class StudentTableSeeder extends Seeder
             'phone_number' => '9843613596',
             'passed_college_name' => 'College Name full',
             'passed_year' => '2014',
-            'marks_obtain' => '20'
+            'marks_obtain' => '20.00'
         ]);
 
         

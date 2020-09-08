@@ -13,8 +13,8 @@
 
       <div class="card m-3">
           <div class="card-header">
-            <i class="fa fa-users"></i> All Users
-            <h4 class="text-center">User List</h4>
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i> All Students
+            <h4 class="text-center">Student List</h4>
           <a href="{{ route('users.create') }}">
             <button class="btn btn-success float-right">
                 Create &nbsp; <i class="fa fa-plus" aria-hidden="true"></i>
@@ -56,46 +56,38 @@
                     <th class="font-weignt-bold">#</th>
                     <th class="font-weignt-bold">Name</th>
                     <th class="font-weignt-bold">Email</th>
-                    <th class="font-weignt-bold">Status</th>
-                    <th class="font-weignt-bold">Role</th>
+                    <th class="font-weignt-bold">Symbol No.</th>
+                    <th class="font-weignt-bold">P Address</th>
+                    <th class="font-weignt-bold">C Address</th>
+                    <th class="font-weignt-bold">Phone</th>
                     <th class="font-weignt-bold">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($data as $item)
+                @foreach($students as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
                     <td> {{ $item->email }} </td>
-                    <td>
-                        <input data-id="{{$item->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Disable" {{ $item->status ? 'checked' : '' }} data-size="small">
-                     </td>
-                    <td>
-                        @if(!empty($item->getRoleNames()))
-                        @foreach($item->getRoleNames() as $v)
-                        <label class="badge badge-success">{{ $v }}</label>
-                        @endforeach
-                        @endif
-                    </td> 
+                    <td> {{ $item->roll_number }} </td>
+                    <td> {{ substr($item->permanent_full_address, 0,  10)."..." }} </td>
+                    <td> {{ substr($item->current_full_address, 0, 10)."..." }} </td>
+                    <td> {{ $item->phone_number }} </td>
+                    
                     
                     <td>
-                        {{-- <button class="edit-modal btn btn-info"
-            data-info="{{$item->id}},{{$item->first_name}},{{$item->last_name}},{{$item->email}},{{$item->gender}},{{$item->country}},{{$item->salary}}">
-            <span class="glyphicon glyphicon-edit"></span> Edit
-        </button>
-        <button class="delete-modal btn btn-danger"
-            data-info="{{$item->id}},{{$item->first_name}},{{$item->last_name}},{{$item->email}},{{$item->gender}},{{$item->country}},{{$item->salary}}">
-            <span class="glyphicon glyphicon-trash"></span> Delete
-        </button> --}}
-      <a href="{{ route('users.show', $item->id) }}"> <button type="button" class="btn btn-primary">
-          <i class="fas fa-eye"></i>
-        </button> </a>
+                   
+                <a href="{{route('students.show', $item->id)}}"> 
+                    <button type="button" class="btn btn-primary">
+                    <i class="fas fa-eye"></i>
+                    </button>
+                </a>
     <a href="#"><button class="btn btn-info"> <i class="fa fa-edit"></i></button> </a> 
        
         {{-- @if ( $role = Auth::user()->roles->pluck('name')) --}}
                 {{-- @if ($role[0] == 'admin') --}}
                     <button class="btn btn-danger"> <i class="fa fa-trash"></i></button>
-                <a class="btn btn-secondary" href="{{ route('users.pdf', $item->id) }}"> <i class="fas fa-file-pdf"></i></a>
+            <a class="btn btn-secondary" href="{{ route('students.pdf', $item->id)}}"> <i class="fas fa-file-pdf"></i></a>
 
                     {{-- @endif --}}
                 {{-- @endif --}}
@@ -108,8 +100,10 @@
                     <th>ID</th>
                     <th>Full Name</th>
                     <th>Email</th>
-                    <th>Status</th>
-                    <th>Role</th>
+                    <th>Symbol No.</th>
+                    <th>P Address</th>
+                    <th>C Address</th>
+                    <th>Phone</th>
                     <th>Action</th>
                 </tr>
             </tfoot>
@@ -129,28 +123,11 @@
 
       $('#table').DataTable({
         "columnDefs": [
-            { "searchable": false, "targets": 5 },
-            { "searchable": false, "targets": 3 },
-            { "orderable": false, "targets": 5}
+            { "searchable": false, "targets": 7 },
+            { "orderable": false, "targets": 7 },
+            { "width": "20%", "targets": 7 }
         ]
        });
   } );
 
-
-  $(function() {
-    $('.toggle-class').change(function() {
-        var status = $(this).prop('checked') == true ? 1 : 0; 
-        var user_id = $(this).data('id'); 
-         console.log(status);
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: '{{ route('user.status')}}',
-            data: {'status': status, 'user_id': user_id},
-            success: function(data){
-              console.log(data.success)
-            }
-        });
-    })
-  })
    </script>

@@ -161,7 +161,7 @@ class UserController extends Controller
         $user = User::find($id);
         $pdf = PDF::loadView('admin.pages.user.user_pdf', compact('user'));
         
-        return $pdf->download('user.pdf');
+        return $pdf->download($user->name.'.pdf');
 
       }
     

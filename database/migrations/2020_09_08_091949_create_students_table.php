@@ -29,7 +29,7 @@ class CreateStudentsTable extends Migration
             $table->datetime('admission_date', 4)->default(carbon::now());
             $table->string('passed_college_name');
             $table->string('passed_year', 4);
-            $table->string('marks_obtain');
+            $table->decimal('marks_obtain', 4, 2);
             $table->timestamps();
         });
     }

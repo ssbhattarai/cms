@@ -46,6 +46,9 @@ Route::group(['middleware' => ['auth']], function () {
         });
 
         Route::group(['prefix' => 'students'], function() {
+            Route::get('/{id}/pdf','admin\StudentController@studentPDF')->name('students.pdf');
+
+            Route::get('/show/{id}', 'admin\StudentController@show')->name('students.show');
             // Route::get('/create', 'admin\S@create')->name('roles.create');
             // Route::post('/store', 'admin\RoleController@store')->name('roles.store');
             
