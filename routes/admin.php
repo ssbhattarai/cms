@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/user', 'admin\UserController@index')->name('users.index');
         Route::get('/roles', 'admin\RoleController@index')->name('roles.index');
+        Route::get('/students', 'admin\StudentController@index')->name('students.index');
         
         Route::group(['prefix' => 'user'], function() {
 
@@ -41,6 +42,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['prefix' => 'roles'], function() {
             Route::get('/create', 'admin\RoleController@create')->name('roles.create');
             Route::post('/store', 'admin\RoleController@store')->name('roles.store');
+            
+        });
+
+        Route::group(['prefix' => 'students'], function() {
+            // Route::get('/create', 'admin\S@create')->name('roles.create');
+            // Route::post('/store', 'admin\RoleController@store')->name('roles.store');
             
         });
 

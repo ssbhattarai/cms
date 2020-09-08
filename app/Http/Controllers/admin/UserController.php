@@ -158,21 +158,9 @@ class UserController extends Controller
 
 
     public function createPDF($id) {
-        // retreive all records from db
         $user = User::find($id);
-        // share data to view
-        // view()->share('user',$user);
-
-        // $pdf = PDF::loadView('admin.pages.user.user_pdf', $user);
-        // return $pdf->download('user.pdf');
-        // $pdf = PDF::loadView('admin.pages.user.user_pdf', $data);
-  
-        // download PDF file with download method
-        // return $pdf->download('user.pdf');
-        // $data = ['title' => 'Welcome to ItSolutionStuff.com'];
-        View::share('user', $user);
-        $pdf = PDF::loadView('admin.pages.user.user_pdf', $user);
-
+        $pdf = PDF::loadView('admin.pages.user.user_pdf', compact('user'));
+        
         return $pdf->download('user.pdf');
 
       }

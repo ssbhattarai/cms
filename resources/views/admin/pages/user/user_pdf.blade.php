@@ -3,11 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laravel 7 PDF Example</title>
+    <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -42,25 +39,17 @@
                         <th scope="row">Email </th>
                         <td>{{ $user->email }}</td>
                       </tr>
-                      
-                      <tr>
-                        <th scope="row">Phone Number </th>
-                        <td>{{ $user->mobile_number }}</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Date Of Birth </th>
-                        <td>{{ \Carbon\CarbonImmutable::parse($user->dob)->isoFormat('Do MMMM YYYY') }}</td>
-                      </tr>
+
                       <tr>
                         <th scope="row">Joined date </th>
                         <td>{{ $user->date_of_join }}</td>
                       </tr>
                       <tr>
                         <th scope="row">Last Loged in </th>
-                        <td>{{ \Carbon\CarbonImmutable::parse($user->login_date)->isoFormat('Do MMMM YYYY')}}</td>
+                        <td>{{ $user->login_date }}</td>
                       </tr>
                       <tr>
-                        <th scope="row">Last Loged in </th>
+                        <th scope="row">Last Loged ip </th>
                         <td>{{ $user->last_login_ip }}</td>
                       </tr>
                     </tbody>
@@ -70,8 +59,6 @@
         </div>
     </div>
 </div>
-
-<script src="{{ asset('js/app.js') }}" type="text/js"></script>
 </body>
 
 </html>

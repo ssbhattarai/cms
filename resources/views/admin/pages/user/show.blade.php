@@ -15,7 +15,7 @@
         <div class="card m-1 mb-2">
             <div class="card-header">
               <div class="d-flex justify-content-end mb-4">
-                <a class="btn btn-primary" href="{{ route('users.pdf', $user->id) }}">Export to PDF</a>
+                <a class="btn btn-primary" href="{{ route('users.pdf', $user->id) }}"> <i class="fas fa-file-pdf"></i> &nbsp; Export to PDF</a>
             </div>
               <h1 class="text-center font-weight-bold">COllege Name</h1>
                 <h4 class="text-center font-weight-normal">Imadol-4, Lalitpur</h4>
@@ -46,20 +46,12 @@
                       </tr>
                       
                       <tr>
-                        <th scope="row">Phone Number </th>
-                        <td>{{ $user->mobile_number }}</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Date Of Birth </th>
-                        <td>{{ \Carbon\CarbonImmutable::parse($user->dob)->isoFormat('Do MMMM YYYY') }}</td>
-                      </tr>
-                      <tr>
                         <th scope="row">Joined date </th>
                         <td>{{ $user->date_of_join }}</td>
                       </tr>
                       <tr>
                         <th scope="row">Last Loged in </th>
-                        <td>{{ \Carbon\CarbonImmutable::parse($user->login_date)->isoFormat('Do MMMM YYYY')}}</td>
+                        <td>{{ $user->last_login}}</td>
                       </tr>
                       <tr>
                         <th scope="row">Last Loged in </th>

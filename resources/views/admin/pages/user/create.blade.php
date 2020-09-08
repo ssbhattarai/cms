@@ -75,7 +75,7 @@
             <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="confirmPassword" placeholder="Confirm Password" name="confirm_password">
             
           </div>
-          <div class="form-group">
+          {{-- <div class="form-group">
         <label for="dob">Date Of Birth</label>
       <div class="input-group">
         <div class="input-group-prepend">
@@ -93,15 +93,9 @@
             <span class="text-danger">{{ $errors->first('dob') }}</span>
            @endif
       </div>
-    </div>
+    </div> --}}
 
-      
-    <label for="phone">Phone Number</label>
-            <input type="text" class="form-control {{ $errors->has('mobile_number') ? 'is-invalid' : '' }}" id="phone" placeholder="Enter Phone Number" name="mobile_number">
-            @if ($errors->has('mobile_number'))
-              <span class="text-danger">{{ $errors->first('mobile_number') }}</span>
-            @endif
-          </div>
+
 
 
           <div class="form-check">
