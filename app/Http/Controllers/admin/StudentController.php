@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use PDF;
+use DB;
+use App\user;
+
 
 class StudentController extends Controller
 {
@@ -23,6 +26,17 @@ class StudentController extends Controller
     {
         $students = Student::all();
         return view('admin.pages.student.index', compact('students'));
+
+    }
+
+    public function searchStudentData($query, $q)
+    {
+        if($q == null) return $query;
+        return $query
+                    ->where('name', 'LIKE', "%{$q}%")
+                    ->orWhere('email', 'LIKE', "%{$q}%")
+                    ->orWhere('phone_number', 'LIKE', "%{$q}%")
+                    ->orWhere('roll_number', 'LIKE', "%{$q}%");
     }
 
     /**
@@ -31,8 +45,15 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $users = DB::table('users')
+                    ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                    ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
+                    ->select('users.name', 'users.email')
+                    ->where('roles.name', '=', 'Student')
+                    ->get();
+
+        return view('admin.pages.student.create', compact('users'));
     }
 
     /**
@@ -43,7 +64,28 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'roll_number' => 'required',
+            'name' => 'required',
+            'email' => 'required|unique:students',
+            'phone_number' => 'required|size:10',
+            'dob' => 'required',
+            'gender' => 'required',
+            'religion' => 'required',
+            'cast' => 'required',
+            'permanent_full_address' => 'required|min:6',
+            'current_full_address' => 'required|min:6',
+            'passed_college_name' => 'required|min:8',
+            'passed_year' => 'required|size:4',
+            'marks_obtain' => 'required'
+        ]);
+        $input = $request->all();
+        // dd($input);
+        // dd($input['name']);
+        $student = Student::create($input);
+        return redirect()->route('students.index')
+                ->with('success','New Student added successfully');
+        // dd($input);
     }
 
     /**
@@ -95,6 +137,7 @@ class StudentController extends Controller
     public function studentPDF($id) 
     {
         $student = Student::find($id);
+        PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
         $pdf = PDF::loadView('admin.pages.student.student_pdf', compact('student'));
         
         return $pdf->download($student->name.'.pdf');

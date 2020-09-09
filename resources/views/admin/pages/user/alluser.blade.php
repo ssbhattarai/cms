@@ -79,23 +79,32 @@
                     </td> 
                     
                     <td>
-                        {{-- <button class="edit-modal btn btn-info"
-            data-info="{{$item->id}},{{$item->first_name}},{{$item->last_name}},{{$item->email}},{{$item->gender}},{{$item->country}},{{$item->salary}}">
-            <span class="glyphicon glyphicon-edit"></span> Edit
-        </button>
-        <button class="delete-modal btn btn-danger"
-            data-info="{{$item->id}},{{$item->first_name}},{{$item->last_name}},{{$item->email}},{{$item->gender}},{{$item->country}},{{$item->salary}}">
-            <span class="glyphicon glyphicon-trash"></span> Delete
-        </button> --}}
-      <a href="{{ route('users.show', $item->id) }}"> <button type="button" class="btn btn-primary">
-          <i class="fas fa-eye"></i>
-        </button> </a>
-    <a href="#"><button class="btn btn-info"> <i class="fa fa-edit"></i></button> </a> 
+                    <a href="{{ route('users.show', $item->id) }}">
+                      <button type="button" class="btn btn-primary  btn-sm">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                  </a>
+                <a href="{{route('users.edit', $item->id)}}">
+                  <button class="btn btn-info  btn-sm">
+                     <i class="fa fa-edit"></i>
+                  </button> 
+                </a> 
        
         {{-- @if ( $role = Auth::user()->roles->pluck('name')) --}}
                 {{-- @if ($role[0] == 'admin') --}}
-                    <button class="btn btn-danger"> <i class="fa fa-trash"></i></button>
-                <a class="btn btn-secondary" href="{{ route('users.pdf', $item->id) }}"> <i class="fas fa-file-pdf"></i></a>
+
+              {{-- <a href="{{ route('users.delete', $item->id)}}">
+                    <button class="btn btn-danger">
+                       <i class="fa fa-trash"></i>
+                    </button>
+                </a> --}}
+                       <button class="btn btn-danger btn-flat btn-sm remove-user" data-id="{{ $item->id }}" data-action="{{ route('users.delete',$item->id) }}"> 
+                        <i class="fa fa-trash"></i>
+                      </button>
+
+                <a class="btn btn-secondary btn-sm" href="{{ route('users.pdf', $item->id) }}"> 
+                  <i class="fas fa-file-pdf"></i>
+                </a>
 
                     {{-- @endif --}}
                 {{-- @endif --}}
@@ -153,4 +162,59 @@
         });
     })
   })
+
+  $("body").on("click",".remove-user",function(){
+    var current_object = $(this);
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (result) {
+            var action = current_object.attr('data-action');
+            var token = jQuery('meta[name="csrf-token"]').attr('content');
+            var id = current_object.attr('data-id');
+
+            $('body').html("<form class='form-inline remove-form' method='post' action='"+action+"'></form>");
+            $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
+            $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
+            $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
+            $('body').find('.remove-form').submit();
+        }
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+    // swal({
+    //     title: "Are you sure?",
+    //     text: "You will not be able to recover this imaginary file!",
+    //     type: "error",
+    //     showCancelButton: true,
+    //     dangerMode: true,
+    //     cancelButtonClass: '#DD6B55',
+    //     confirmButtonColor: '#dc3545',
+    //     confirmButtonText: 'Delete!',
+    // },function (result) {
+    //     if (result) {
+    //         var action = current_object.attr('data-action');
+    //         var token = jQuery('meta[name="csrf-token"]').attr('content');
+    //         var id = current_object.attr('data-id');
+
+    //         $('body').html("<form class='form-inline remove-form' method='post' action='"+action+"'></form>");
+    //         $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
+    //         $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
+    //         $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
+    //         $('body').find('.remove-form').submit();
+    //     }
+    // });
+});
    </script>

@@ -17,8 +17,8 @@
               <div class="d-flex justify-content-end mb-4">
                 <a class="btn btn-primary" href="{{ route('users.pdf', $user->id) }}"> <i class="fas fa-file-pdf"></i> &nbsp; Export to PDF</a>
             </div>
-              <h1 class="text-center font-weight-bold">COllege Name</h1>
-                <h4 class="text-center font-weight-normal">Imadol-4, Lalitpur</h4>
+            <h2 class="text-center font-weight-bold" style="color: cadetblue">College Of Information Technology and Engineering</h2>
+            <h4 class="text-center font-weight-normal" style="color: cadetblue">Tinkune, Lalitpur</h4>
                 <div class="table-responsive mt-3">
                 <table class="table table-striped">
                     <tbody>

@@ -17,10 +17,10 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->char('roll_number', 6)->unique();
-            $table->string('dob');
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('gender');
+            $table->string('dob');
             $table->string('religion');
             $table->string('cast');
             $table->string('permanent_full_address');

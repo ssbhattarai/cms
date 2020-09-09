@@ -9,11 +9,10 @@
 
 <body>
 <div class="content-wrapper">
-    <div class="container">
         <div class="card m-1 mb-2">
             <div class="card-header">
-              <h1 class="text-center font-weight-bold">COllege Name</h1>
-                <h4 class="text-center font-weight-normal">Imadol-4, Lalitpur</h4>
+              <h2 class="text-center font-weight-bold" style="color: cadetblue">College Of Information Technology and Engineering</h2>
+                <h4 class="text-center font-weight-normal" style="color: cadetblue">Tinkune, Lalitpur</h4>
                 <div class="table-responsive mt-3">
                 <table class="table table-striped">
                     <tbody>
@@ -54,7 +53,6 @@
                       </tr>
                     </tbody>
                   </table>
-                </div>
             </div>
         </div>
     </div>

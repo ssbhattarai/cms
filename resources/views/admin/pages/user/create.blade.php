@@ -59,6 +59,7 @@
             @endif
           </div>
         </div>
+        
         <div class="offset-sm-1 col-sm-5">
           <div class="form-group">
             <label for="password">Password</label>

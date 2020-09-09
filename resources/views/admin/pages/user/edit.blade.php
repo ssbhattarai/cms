@@ -1,74 +1,120 @@
-@include('admin.layouts.header')
-<link rel="stylesheet" href="{{ asset('css/formValidation.css') }}">
 
+@include('admin.layouts.header')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css" integrity="sha512-p4vIrJ1mDmOVghNMM4YsWxm0ELMJ/T0IkdEvrkNHIcgFsSzDi/fV7YxzTzb3mnMvFPawuIyIrHcpxClauEfpQg==" crossorigin="anonymous" />
 @include('admin.layouts.navbar')
 @include('admin.layouts.sidebar')
 
 
 <div class="content-wrapper">
     <div class="container">
-        <h4>this is edit page of user</h4>
-        <div class="form-container">
-
-            <form id="form1" novalidate method="Post">
-               @csrf
-               <div class="form-group">
-                   <label>Username (required)</label>
-                   <input type="text" required data-pristine-required-message="Please choose a username" class="form-control"/>
-               </div>
-              
-               <div class="form-group">
-                   <label>ZIP code</label>
-                   <input type="text" data-pristine-pattern="/^[0-9]{5}(?:-[0-9]{4})?$/" data-pristine-pattern-message="Invalid ZIP code" class="form-control" value="123"/>
-               </div>
-               
-               <div class="form-group">
-                   <label>Your age (required, min. 14)</label>
-                   <input type="number" min="14" data-pristine-min-message="You must be at least 14-years-old" required class="form-control" value="10" />
-               </div>
-               <div class="form-group">
-                   <label>Password (required)</label>
-                   <input type="password" id="pwd"  data-pristine-pattern="/^[0-9]{5}(?:-[0-9]{4})?$/" required data-pristine-required-message="Please choose a password" data-pristine-pattern= "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/" data-pristine-pattern-message="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number" class="form-control" />
-                 (see <a href="https://stackoverflow.com/questions/19605150" target="_blank">here</a> other password patterns.)
-               </div>
-               <div class="form-group">
-                   <label>Retype password</label>
-                   <input type="password" data-pristine-equals="#pwd" data-pristine-equals-message="Passwords don't match" class="form-control" />
-               </div>
-               <div class="form-group inline-label">
-                   <input id="ch1" type="checkbox" name="future" required data-pristine-required-message="You must accept the terms and conditions"/>
-                   <label for="ch1">I accept the terms  and conditions (required)</label><br/>
-               </div>
-               <div class="form-group">
-                   <input type="submit" value="Submit" class="btn"/>
-               </div>
-            </form>
-         </div>
+        <nav aria-label="breadcrumb" class="m-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="/admin/user">Users</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Edit user</li>
+            </ol>
+          </nav>
+    
+          <div class="card m-3">
+              <div class="card-header">
+                <h4 class="text-center">Edit Create</h4>
+              </div>
+          </div>
     </div>
+    <div class="row m-3">
+      <div class="col-lg-12 margin-tb">
+      {{-- <div class="pull-right">
+      <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+      </div> --}}
+      </div>
+      </div>
+  
+      <form method="POST" action="{{ route('users.update', $user->id) }}">
+        @csrf
+      <div class="row m-3">
+        <div class="offset-sm-1 col-sm-5">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name" placeholder="Enter Name" name="name" value={{ $user->name }}>
+            @if ($errors->has('name'))
+              <span class="text-danger">{{ $errors->first('name') }}</span>
+            @endif
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" placeholder="Enter email" name="email">
+            @if ($errors->has('email'))
+                      <span class="text-danger">{{ $errors->first('email') }}</span>
+            @endif
+          </div>
+          <div class="form-group">
+            <label for="roles">Select Role</label>
+            <select multiple class="form-control {{ $errors->has('roles') ? 'is-invalid' : '' }}" id="roles" name="roles">
+              @foreach ($roles as $role)
+                <option>{{ $role }}</option>
+              @endforeach
+            </select>
+            @if ($errors->has('roles'))
+          <span class="text-danger">{{ $errors->first('roles') }}</span>
+            @endif
+          </div>
+        </div>
+        
+        <div class="offset-sm-1 col-sm-5">
+          <div class="form-group">
+            <label for="password">Password</label>
+          <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password" placeholder="Enter Password" name="password">
+          <small id="passwordHelpBlock" class="form-text text-muted">
+            Password must contain at least 6 characters, numbers and both uppercase and lowercase letters and one Special Character.
+          </small>
+          @if ($errors->has('password'))
+            <span class="text-danger">{{ $errors->first('password') }}</span>
+          @endif
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="confirmPassword" placeholder="Confirm Password" name="confirm_password">
+            
+          </div>
+          {{-- <div class="form-group">
+        <label for="dob">Date Of Birth</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="dob">
+            <i class="far fa-calendar-alt"></i>
+          </span>
+        </div>
+           <input type="text" class="form-control {{ $errors->has('dob') ? 'is-invalid' : '' }}" 
+           data-date-format="yyyy/mm/dd"
+           data-provide="datepicker" placeholder="Date Of Birth"
+           name="dob"
+           autocomplete="off"
+           >
+           @if ($errors->has('dob'))
+            <span class="text-danger">{{ $errors->first('dob') }}</span>
+           @endif
+      </div>
+    </div> --}}
+
+
+
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="status" name="status">
+            <label class="form-check-label" for="status"> User Status</label>
+          </div>
+        </div>
+      </div>
+        <button type="submit" class="btn btn-primary ml-10 btn-lg mb-4" style="margin-left: 41%;">Submit</button>
+      </form>
+      </div>
 </div>
 
 
-
-
 @include('admin.layouts.footer')
-
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
 <script>
-    var pristine;
-window.onload = function () {
-
-   var form = document.getElementById("form1");
-
-   pristine = new Pristine(form);
-
-   form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var valid = pristine.validate();
-      //alert('Form is valid: ' + valid);
-
-   });
-
-
-};
+  $('.datepicker').datepicker({
+    language: 'NP'
+  });
 </script>

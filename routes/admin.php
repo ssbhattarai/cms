@@ -34,7 +34,9 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/create', 'admin\UserController@create')->name('users.create');
             Route::get('/show/{id}', 'admin\UserController@show')->name('users.show');
             Route::post('/store', 'admin\UserController@store')->name('users.store');
-            Route::get('/edit', 'admin\UserController@edit')->name('users.edit');
+            Route::get('/{id}/edit', 'admin\UserController@edit')->name('users.edit');
+            Route::delete('/{id}/delete', 'admin\UserController@destroy')->name('users.delete');
+            Route::put('/{id}/update', 'admin\UserController@update')->name('users.update');
             Route::get('/changestatus', 'admin\UserController@changeStatus')->name('user.status');
             
         });
@@ -48,7 +50,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['prefix' => 'students'], function() {
             Route::get('/{id}/pdf','admin\StudentController@studentPDF')->name('students.pdf');
 
+            Route::get('/create', 'admin\StudentController@create')->name('students.create');
             Route::get('/show/{id}', 'admin\StudentController@show')->name('students.show');
+            Route::post('/store', 'admin\StudentController@store')->name('students.store');
+
             // Route::get('/create', 'admin\S@create')->name('roles.create');
             // Route::post('/store', 'admin\RoleController@store')->name('roles.store');
             

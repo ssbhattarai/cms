@@ -15,7 +15,7 @@
           <div class="card-header">
             <i class="fa fa-graduation-cap" aria-hidden="true"></i> All Students
             <h4 class="text-center">Student List</h4>
-          <a href="{{ route('users.create') }}">
+          <a href="{{ route('students.create') }}">
             <button class="btn btn-success float-right">
                 Create &nbsp; <i class="fa fa-plus" aria-hidden="true"></i>
             </button></a>
@@ -49,6 +49,22 @@
             <p>{{ $message }}</p>
       </div>
         @endif
+        <table>
+          <tr>
+            <td>
+              <input type='text' class="form-control" id='searchByName' placeholder='Enter name'>
+            </td>
+            <td>
+              <select id='searchByGender' class="form-control">
+                <option value=''>-- Select Gender--</option>
+                <option value='Male'>Male</option>
+                <option value='Female'>Female</option>
+                <option value='Other'>Others</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+     
         <div class="table-responsive">
         <table class="table table-striped table-bordered mr-3" id="table" style="width:100%">
             <thead>
@@ -75,7 +91,7 @@
                     <td> {{ $item->phone_number }} </td>
                     
                     
-                    <td>
+              <td>
                    
                 <a href="{{route('students.show', $item->id)}}"> 
                     <button type="button" class="btn btn-primary">
@@ -109,7 +125,6 @@
             </tfoot>
         </table>
         </div>
-
         </div>
 </div>
 
@@ -121,13 +136,16 @@
     $(document).ready(function() {
         // $('#table').DataTable();
 
+        // dom: 'Pfrtip',
       $('#table').DataTable({
+
         "columnDefs": [
             { "searchable": false, "targets": 7 },
             { "orderable": false, "targets": 7 },
-            { "width": "20%", "targets": 7 }
+            { "width": "21%", "targets": 7 }
         ]
        });
+
   } );
 
    </script>
