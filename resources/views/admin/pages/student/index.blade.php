@@ -43,27 +43,25 @@
               </div>
           </div>
       </div>
+  
     <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-4 m-3">
+        <form action="{{ route('users.search') }}" method="GET">
+          <div class="form-group">
+            <input type="text" class="form-control" name="search" placeholder="Search Name,Email,Phone, Roll">
+            <button class="btn btn-info float-right" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+        </form>
+        </div>
+      </div>
+
       @if ($message = Session::get('success'))
           <div class="alert alert-success">
             <p>{{ $message }}</p>
       </div>
         @endif
-        <table>
-          <tr>
-            <td>
-              <input type='text' class="form-control" id='searchByName' placeholder='Enter name'>
-            </td>
-            <td>
-              <select id='searchByGender' class="form-control">
-                <option value=''>-- Select Gender--</option>
-                <option value='Male'>Male</option>
-                <option value='Female'>Female</option>
-                <option value='Other'>Others</option>
-              </select>
-            </td>
-          </tr>
-        </table>
      
         <div class="table-responsive">
         <table class="table table-striped table-bordered mr-3" id="table" style="width:100%">
@@ -138,7 +136,7 @@
 
         // dom: 'Pfrtip',
       $('#table').DataTable({
-
+        fixedHeader: true,
         "columnDefs": [
             { "searchable": false, "targets": 7 },
             { "orderable": false, "targets": 7 },

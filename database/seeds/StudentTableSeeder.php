@@ -29,6 +29,10 @@ class StudentTableSeeder extends Seeder
             'passed_year' => '2014',
             'marks_obtain' => '20.00'
         ]);
+        
+        $count = 100;
+        factory(Student::class, $count)->create();
+
 
         
     }

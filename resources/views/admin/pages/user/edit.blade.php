@@ -6,7 +6,7 @@
 
 
 <div class="content-wrapper">
-    <div class="container">
+    <div class="">
         <nav aria-label="breadcrumb" class="m-3">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
@@ -30,28 +30,31 @@
       </div>
   
       <form method="POST" action="{{ route('users.update', $user->id) }}">
-        @csrf
+        @csrf;
+        <input type="hidden" name="_method" value="post">
       <div class="row m-3">
         <div class="offset-sm-1 col-sm-5">
           <div class="form-group">
             <label for="name">Full Name</label>
-            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name" placeholder="Enter Name" name="name" value={{ $user->name }}>
+            <input type="text" value="{{ $user->name }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name" placeholder="Enter Name" name="name">
+            
             @if ($errors->has('name'))
               <span class="text-danger">{{ $errors->first('name') }}</span>
             @endif
           </div>
           <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" placeholder="Enter email" name="email">
+            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" placeholder="Enter email" name="email" value="{{ $user->email }}">
             @if ($errors->has('email'))
                       <span class="text-danger">{{ $errors->first('email') }}</span>
             @endif
           </div>
           <div class="form-group">
             <label for="roles">Select Role</label>
-            <select multiple class="form-control {{ $errors->has('roles') ? 'is-invalid' : '' }}" id="roles" name="roles">
+            <select class="form-control {{ $errors->has('roles') ? 'is-invalid' : '' }}" id="roles" name="roles" >
+                <option value>---Select Role---</option>
               @foreach ($roles as $role)
-                <option>{{ $role }}</option>
+                <option value="{{ $userRole }}" {{ ( $userRole == $role) ? 'selected' : '' }}>{{ $role }}</option>
               @endforeach
             </select>
             @if ($errors->has('roles'))
@@ -61,9 +64,9 @@
         </div>
         
         <div class="offset-sm-1 col-sm-5">
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="password">Password</label>
-          <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password" placeholder="Enter Password" name="password">
+          <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password" placeholder="Enter Password" name="password" value="{{ $user->password }}">
           <small id="passwordHelpBlock" class="form-text text-muted">
             Password must contain at least 6 characters, numbers and both uppercase and lowercase letters and one Special Character.
           </small>
@@ -75,7 +78,7 @@
             <label for="confirmPassword">Confirm Password</label>
             <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="confirmPassword" placeholder="Confirm Password" name="confirm_password">
             
-          </div>
+          </div> --}}
           {{-- <div class="form-group">
         <label for="dob">Date Of Birth</label>
       <div class="input-group">
@@ -99,13 +102,13 @@
 
 
 
-          <div class="form-check">
+          {{-- <div class="form-check">
             <input type="checkbox" class="form-check-input" id="status" name="status">
             <label class="form-check-label" for="status"> User Status</label>
-          </div>
+          </div> --}}
         </div>
       </div>
-        <button type="submit" class="btn btn-primary ml-10 btn-lg mb-4" style="margin-left: 41%;">Submit</button>
+        <button type="submit" class="btn btn-primary ml-10 btn-lg mb-4" style="margin-left: 20%;">Submit</button>
       </form>
       </div>
 </div>

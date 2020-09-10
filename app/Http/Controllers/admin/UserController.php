@@ -105,7 +105,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->first();  //! for multiselect You must change the first() -> all() function
         // dd($userRole);
         return view('admin.pages.user.edit',compact('user','roles','userRole'));
     }
@@ -119,31 +119,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required|min:5',
-            'email' => 'required|email|unique:users,email',
-            'password' => ['required', 
-               'min:6', 
-               'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/', 
-               'same:confirm_password'
-            ],
-            'roles' => 'required',
-
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            // 'password'=>'required|same:confirm_password',
+            'roles' => 'required'
         ]);
-    
-        $input = $request->all();
-        if(!empty($input['password'])){ 
-            $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = array_except($input,array('password'));    
-        }
-    
+
+        $input = $request->except(['password','_method','_token', 'roles']);
         $user = User::find($id);
         $user->update($input);
+        // $user = User::whereId($id)->update($input);
         DB::table('model_has_roles')->where('model_id',$id)->delete(); //delete the previous Role of the User
-    
-        $user->assignRole($request->input('roles'));
-    
+        $user->assignRole($request->get('roles'));
         return redirect()->route('users.index')
                         ->with('success','User updated successfully');
     }

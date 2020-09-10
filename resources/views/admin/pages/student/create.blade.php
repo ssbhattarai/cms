@@ -29,7 +29,8 @@
       </div> --}}
       </div>
       </div>
-  
+    @if (count($users) > 0)
+        
       <form method="POST" action="{{ route('students.store') }}">
         @csrf
       <div class="row m-3">
@@ -73,7 +74,7 @@
               </div>
               <div class="form-group">
                 <label for="phone">Phone Number</label>
-              <input type="number" class="form-control {{ $errors->has('phone_number') ? 'is-invalid' : '' }}" id="phone" placeholder="Enter Phone" name="phone_number">
+              <input type="text" class="form-control {{ $errors->has('phone_number') ? 'is-invalid' : '' }}" id="phone" placeholder="Enter Phone" name="phone_number">
         
               @if ($errors->has('phone_number'))
                 <span class="text-danger">{{ $errors->first('permanent_full_address') }}</span>
@@ -201,6 +202,12 @@
       
         <button type="submit" class="btn btn-primary ml-10 btn-lg mb-4" style="margin-left: 41%;">Submit</button>
       </form>
+    @endif
+      {{-- @foreach ($users as $user) --}}
+          @if ( count($users) <= 0 )
+              <h6 class="text-warning m-3" > You Must Create a User Login For Student Student To create a new Student Details</h6>
+          @endif
+      {{-- @endforeach --}}
       </div>
 </div>
 

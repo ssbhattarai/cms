@@ -22,24 +22,26 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/user', 'admin\UserController@index')->name('users.index');
         Route::get('/roles', 'admin\RoleController@index')->name('roles.index');
         Route::get('/students', 'admin\StudentController@index')->name('students.index');
+        Route::get('/students/search', 'admin\StudentController@search')->name('users.search');
         
         Route::group(['prefix' => 'user'], function() {
-
+            
             Route::get('/edit-me', function (){
                 return view('admin.pages.user.edit');
             });
-
+            
             Route::get('/{id}/pdf','admin\UserController@createPDF')->name('users.pdf');
-
+            
             Route::get('/create', 'admin\UserController@create')->name('users.create');
             Route::get('/show/{id}', 'admin\UserController@show')->name('users.show');
             Route::post('/store', 'admin\UserController@store')->name('users.store');
             Route::get('/{id}/edit', 'admin\UserController@edit')->name('users.edit');
             Route::delete('/{id}/delete', 'admin\UserController@destroy')->name('users.delete');
-            Route::put('/{id}/update', 'admin\UserController@update')->name('users.update');
+            Route::post('/{id}/update', 'admin\UserController@update')->name('users.update');
             Route::get('/changestatus', 'admin\UserController@changeStatus')->name('user.status');
             
         });
+        
 
         Route::group(['prefix' => 'roles'], function() {
             Route::get('/create', 'admin\RoleController@create')->name('roles.create');

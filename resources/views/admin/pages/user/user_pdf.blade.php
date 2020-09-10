@@ -45,7 +45,7 @@
                       </tr>
                       <tr>
                         <th scope="row">Last Loged in </th>
-                        <td>{{ $user->login_date }}</td>
+                        <td>{{ $user->last_login }}</td>
                       </tr>
                       <tr>
                         <th scope="row">Last Loged ip </th>

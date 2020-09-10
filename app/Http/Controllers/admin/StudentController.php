@@ -28,6 +28,25 @@ class StudentController extends Controller
         return view('admin.pages.student.index', compact('students'));
 
     }
+    public function search(Request $request)
+    {
+        
+        $search = $request->get('search');
+        
+        $students = DB::table('students')
+                        ->where('name', 'LIKE', '%'. $search .'%')
+                        ->orWhere('phone_number', 'LIKE', $search .'%')
+                        ->orWhere('roll_number', 'LIKE', '%'. $search .'%')
+                        ->orWhere('email', 'LIKE', '%'. $search .'%')
+                        ->orWhere('gender', 'LIKE', $search .'%')
+                        ->orWhere('cast', 'LIKE', $search .'%')
+                        ->orWhere('religion', 'LIKE', $search .'%')
+                        ->get();
+        // dd($students);
+        return view('admin.pages.student.index', compact('students'));
+        
+        
+    }
 
     public function searchStudentData($query, $q)
     {
@@ -129,9 +148,10 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy($id)
     {
-        //
+        Student::find($id)->delete();
+        return redirect()->route('students.index')->with('success', 'Student Is Deleted Successfully');
     }
 
     public function studentPDF($id) 
