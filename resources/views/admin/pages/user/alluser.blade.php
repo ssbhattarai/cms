@@ -194,27 +194,5 @@
         )
       }
     })
-    // swal({
-    //     title: "Are you sure?",
-    //     text: "You will not be able to recover this imaginary file!",
-    //     type: "error",
-    //     showCancelButton: true,
-    //     dangerMode: true,
-    //     cancelButtonClass: '#DD6B55',
-    //     confirmButtonColor: '#dc3545',
-    //     confirmButtonText: 'Delete!',
-    // },function (result) {
-    //     if (result) {
-    //         var action = current_object.attr('data-action');
-    //         var token = jQuery('meta[name="csrf-token"]').attr('content');
-    //         var id = current_object.attr('data-id');
-
-    //         $('body').html("<form class='form-inline remove-form' method='post' action='"+action+"'></form>");
-    //         $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
-    //         $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
-    //         $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
-    //         $('body').find('.remove-form').submit();
-    //     }
-    // });
 });
    </script>

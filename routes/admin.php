@@ -52,6 +52,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['prefix' => 'students'], function() {
             Route::get('/{id}/pdf','admin\StudentController@studentPDF')->name('students.pdf');
 
+            Route::get('/{id}/edit', 'admin\StudentController@edit')->name('students.edit');
+            Route::delete('/{id}/delete', 'admin\StudentController@destroy')->name('students.delete');
+            Route::post('/{id}/update', 'admin\StudentController@update')->name('students.update');
             Route::get('/create', 'admin\StudentController@create')->name('students.create');
             Route::get('/show/{id}', 'admin\StudentController@show')->name('students.show');
             Route::post('/store', 'admin\StudentController@store')->name('students.store');

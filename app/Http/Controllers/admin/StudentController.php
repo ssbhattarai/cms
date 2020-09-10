@@ -48,15 +48,6 @@ class StudentController extends Controller
         
     }
 
-    public function searchStudentData($query, $q)
-    {
-        if($q == null) return $query;
-        return $query
-                    ->where('name', 'LIKE', "%{$q}%")
-                    ->orWhere('email', 'LIKE', "%{$q}%")
-                    ->orWhere('phone_number', 'LIKE', "%{$q}%")
-                    ->orWhere('roll_number', 'LIKE', "%{$q}%");
-    }
 
     /**
      * Show the form for creating a new resource.

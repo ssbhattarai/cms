@@ -45,24 +45,27 @@
       </div>
   
     <div class="container mt-5">
-      <div class="row">
-        <div class="col-md-4 m-3">
-        <form action="{{ route('users.search') }}" method="GET">
-          <div class="form-group">
-            <input type="text" class="form-control" name="search" placeholder="Search Name,Email,Phone, Roll">
-            <button class="btn btn-info float-right" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </div>
-        </form>
-        </div>
-      </div>
+
 
       @if ($message = Session::get('success'))
           <div class="alert alert-success">
             <p>{{ $message }}</p>
       </div>
         @endif
-     
+        <div class="row">
+          <div class="col-md-4 m-3">
+            <form action="{{ route('users.search') }}" method="GET" class="form-inline">
+              <div class="form-group">
+                <input type="text" class="form-control" name="search" placeholder="Search ALL Fields"> <br>
+                <button class="btn btn-info ml-1" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+                <a href="{{route('students.index')}}">
+                 <button class="btn btn-light ml-1" type="button"> <i class="fas fa-times" syle="color: darkcyan;"></i> </button>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
         <div class="table-responsive">
         <table class="table table-striped table-bordered mr-3" id="table" style="width:100%">
             <thead>
@@ -92,16 +95,18 @@
               <td>
                    
                 <a href="{{route('students.show', $item->id)}}"> 
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary btn-sm">
                     <i class="fas fa-eye"></i>
                     </button>
                 </a>
-    <a href="#"><button class="btn btn-info"> <i class="fa fa-edit"></i></button> </a> 
+    <a href="#"><button class="btn btn-info btn-sm"> <i class="fa fa-edit"></i></button> </a> 
        
         {{-- @if ( $role = Auth::user()->roles->pluck('name')) --}}
                 {{-- @if ($role[0] == 'admin') --}}
-                    <button class="btn btn-danger"> <i class="fa fa-trash"></i></button>
-            <a class="btn btn-secondary" href="{{ route('students.pdf', $item->id)}}"> <i class="fas fa-file-pdf"></i></a>
+                    <button class="btn btn-danger btn-flat btn-sm remove-student" data-id="{{ $item->id }}" data-action="{{ route('students.delete',$item->id) }}"> 
+                      <i class="fa fa-trash"></i>
+                    </button>
+            <a class="btn btn-secondary btn-sm" href="{{ route('students.pdf', $item->id)}}"> <i class="fas fa-file-pdf"></i></a>
 
                     {{-- @endif --}}
                 {{-- @endif --}}
@@ -140,10 +145,44 @@
         "columnDefs": [
             { "searchable": false, "targets": 7 },
             { "orderable": false, "targets": 7 },
-            { "width": "21%", "targets": 7 }
+            { "width": "18%", "targets": 7 }
         ]
        });
 
   } );
+
+
+  $("body").on("click",".remove-student",function(){
+    var current_object = $(this);
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (result) {
+            var action = current_object.attr('data-action');
+            var token = jQuery('meta[name="csrf-token"]').attr('content');
+            var id = current_object.attr('data-id');
+
+            $('body').html("<form class='form-inline remove-form' method='post' action='"+action+"'></form>");
+            $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
+            $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
+            $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
+            $('body').find('.remove-form').submit();
+        }
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+});
 
    </script>
