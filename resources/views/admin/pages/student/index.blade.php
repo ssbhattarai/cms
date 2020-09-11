@@ -19,28 +19,6 @@
             <button class="btn btn-success float-right">
                 Create &nbsp; <i class="fa fa-plus" aria-hidden="true"></i>
             </button></a>
-            <div class="btn-group" role="group">
-                <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Export
-                </button>
-                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                  <a class="dropdown-item" href="{{ route('users.exportexcel') }}">
-                    <i class="far fa-file-excel"></i>
-                    &nbsp;
-                    Excel Export</a>
-                  <a class="dropdown-item" href="{{ route('users.exportcsv')}}">
-                    <i class="fas fa-file-csv"></i>
-                    &nbsp;
-                      CSV
-                    </a>
-
-                    {{-- <a class="dropdown-item" href="#">
-                        <i class="far fa-file-pdf"></i>
-                        &nbsp;
-                          PDF
-                    </a> --}}
-                </div>
-              </div>
           </div>
       </div>
   
@@ -56,8 +34,8 @@
           <div class="col-md-4 m-3">
             <form action="{{ route('users.search') }}" method="GET" class="form-inline">
               <div class="form-group">
-                <input type="text" class="form-control" name="search" placeholder="Search ALL Fields" required> <br>
-                <button class="btn btn-info ml-1" type="submit">Search <i class="fa fa-search" aria-hidden="true"></i>
+                <input type="text" class="form-control" name="search" placeholder="Search ALL Fields" required value="{{  old('search') }}"> <br>
+                <button class="btn btn-outline-info ml-1" type="submit">Search <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
                 <a href="{{route('students.index')}}">
                  <button class="btn btn-light ml-1" type="button">Clear Search <i class="fas fa-times" syle="color: darkcyan;"></i> </button>
@@ -74,12 +52,15 @@
                     <th class="font-weignt-bold">Name</th>
                     <th class="font-weignt-bold">Email</th>
                     <th class="font-weignt-bold">Symbol No.</th>
+                    <th class="font-weignt-bold">Phone</th>
                     <th class="font-weignt-bold">Gender</th>
-                    <th class="font-weignt-bold">Religion</th>
-                    <th class="font-weignt-bold">Caste</th>
                     <th class="font-weignt-bold">P Address</th>
                     <th class="font-weignt-bold">C Address</th>
-                    <th class="font-weignt-bold">Phone</th>
+                    <th class="font-weignt-bold">Religion</th>
+                    <th class="font-weignt-bold">Caste</th>
+                    <th class="font-weignt-bold">Privious College Name</th>
+                    <th class="font-weignt-bold">Passed Year</th>
+                    <th class="font-weignt-bold">Marks (%)</th>
                     <th class="font-weignt-bold">Actions</th>
                 </tr>
             </thead>
@@ -90,22 +71,29 @@
                     <td>{{ $item->name }}</td>
                     <td> {{ $item->email }} </td>
                     <td> {{ $item->roll_number }} </td>
+                    <td> {{ $item->phone_number }} </td>
                     <td> {{ $item->gender }} </td>
-                    <td> {{ $item->religion }} </td>
-                    <td> {{ $item->cast }} </td>
                     <td> {{ $item->permanent_full_address }}</td>
                     <td> {{ $item->current_full_address }} </td>
-                    <td> {{ $item->phone_number }} </td>
+                    <td> {{ $item->religion }} </td>
+                    <td> {{ $item->cast }} </td>
+                    <td> {{ $item->passed_college_name }} </td>
+                    <td> {{ $item->passed_year }} </td>
+                    <td> {{ $item->marks_obtain }} </td>
                     
                     
               <td>
                    
-                <a href="{{route('students.show', $item->id)}}"> 
+                <a href="{{ route('students.show', $item->id )}}"> 
                     <button type="button" class="btn btn-primary btn-sm">
                     <i class="fas fa-eye"></i>
                     </button>
                 </a>
-    <a href="#"><button class="btn btn-info btn-sm"> <i class="fa fa-edit"></i></button> </a> 
+              <a href="{{ route('students.edit', $item->id) }}">
+                  <button class="btn btn-info btn-sm"> 
+                    <i class="fa fa-edit"></i>
+                  </button> 
+                </a> 
        
         {{-- @if ( $role = Auth::user()->roles->pluck('name')) --}}
                 {{-- @if ($role[0] == 'admin') --}}
@@ -122,17 +110,20 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>ID</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Symbol No.</th>
-                    <th>Gender</th>
-                    <th>Religion</th>
-                    <th>Caste</th>
-                    <th>P Address</th>
-                    <th>C Address</th>
-                    <th>Phone</th>
-                    <th>Action</th>
+                  <th class="font-weignt-bold">#</th>
+                  <th class="font-weignt-bold">Name</th>
+                  <th class="font-weignt-bold">Email</th>
+                  <th class="font-weignt-bold">Symbol No.</th>
+                  <th class="font-weignt-bold">Phone</th>
+                  <th class="font-weignt-bold">Gender</th>
+                  <th class="font-weignt-bold">P Address</th>
+                  <th class="font-weignt-bold">C Address</th>
+                  <th class="font-weignt-bold">Religion</th>
+                  <th class="font-weignt-bold">Caste</th>
+                  <th class="font-weignt-bold">Privious College Name</th>
+                  <th class="font-weignt-bold">Passed Year</th>
+                  <th class="font-weignt-bold">Marks (%)</th>
+                  <th class="font-weignt-bold">Actions</th>
                 </tr>
             </tfoot>
         </table>

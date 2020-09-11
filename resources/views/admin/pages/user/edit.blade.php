@@ -108,7 +108,7 @@
           </div> --}}
         </div>
       </div>
-        <button type="submit" class="btn btn-primary ml-10 btn-lg mb-4" style="margin-left: 20%;">Submit</button>
+        <button type="submit" class="btn btn-outline-primary ml-10 btn-lg mb-4" style="margin-left: 20%;">Update</button>
       </form>
       </div>
 </div>

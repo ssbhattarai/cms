@@ -110,7 +110,8 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   
+        
         $student = Student::find($id);
         return view('admin.pages.student.show', compact('student'));
     }
@@ -121,9 +122,17 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit($id)
     {
-        //
+        $student = Student::find($id);
+        $users = DB::table('users')
+                    ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                    ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
+                    ->select('users.name', 'users.email')
+                    ->where('roles.name', '=', 'Student')
+                    ->get();
+        // dd($users);
+        return view('admin.pages.student.edit', compact(['student', 'users']));
     }
 
     /**
@@ -133,9 +142,27 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'roll_number' => 'required',
+            'name' => 'required',
+            'phone_number' => 'required|size:10',
+            'dob' => 'required',
+            'gender' => 'required',
+            'religion' => 'required',
+            'cast' => 'required',
+            'permanent_full_address' => 'required|min:6',
+            'current_full_address' => 'required|min:6',
+            'passed_college_name' => 'required|min:8',
+            'passed_year' => 'required|size:4',
+            'marks_obtain' => 'required'
+        ]);
+        $input = $request->except(['email','_method','_token']);
+        $student = Student::find($id);
+        $student->update($input);
+        return redirect()->route('students.index')
+                ->with('success', 'The Student is Updated Successfully');
     }
 
     /**

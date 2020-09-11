@@ -35,14 +35,14 @@
         <div class="offset-sm-1 col-sm-5">
           <div class="form-group">
             <label for="name">Full Name</label>
-            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name" placeholder="Enter Name" name="name">
+            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name" placeholder="Enter Name" name="name" value="{{ old('name') }}">
             @if ($errors->has('name'))
               <span class="text-danger">{{ $errors->first('name') }}</span>
             @endif
           </div>
           <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" placeholder="Enter email" name="email">
+            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" placeholder="Enter email" name="email" value="{{ old('email') }}">
             @if ($errors->has('email'))
                       <span class="text-danger">{{ $errors->first('email') }}</span>
             @endif
