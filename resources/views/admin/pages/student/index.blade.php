@@ -56,24 +56,27 @@
           <div class="col-md-4 m-3">
             <form action="{{ route('users.search') }}" method="GET" class="form-inline">
               <div class="form-group">
-                <input type="text" class="form-control" name="search" placeholder="Search ALL Fields"> <br>
-                <button class="btn btn-info ml-1" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+                <input type="text" class="form-control" name="search" placeholder="Search ALL Fields" required> <br>
+                <button class="btn btn-info ml-1" type="submit">Search <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
                 <a href="{{route('students.index')}}">
-                 <button class="btn btn-light ml-1" type="button"> <i class="fas fa-times" syle="color: darkcyan;"></i> </button>
+                 <button class="btn btn-light ml-1" type="button">Clear Search <i class="fas fa-times" syle="color: darkcyan;"></i> </button>
                 </a>
               </div>
             </form>
           </div>
         </div>
         <div class="table-responsive">
-        <table class="table table-striped table-bordered mr-3" id="table" style="width:100%">
+        <table class="table table-striped table-bordered nowrap mr-3" id="example" style="width:100%">
             <thead>
                 <tr class="">
                     <th class="font-weignt-bold">#</th>
                     <th class="font-weignt-bold">Name</th>
                     <th class="font-weignt-bold">Email</th>
                     <th class="font-weignt-bold">Symbol No.</th>
+                    <th class="font-weignt-bold">Gender</th>
+                    <th class="font-weignt-bold">Religion</th>
+                    <th class="font-weignt-bold">Caste</th>
                     <th class="font-weignt-bold">P Address</th>
                     <th class="font-weignt-bold">C Address</th>
                     <th class="font-weignt-bold">Phone</th>
@@ -87,8 +90,11 @@
                     <td>{{ $item->name }}</td>
                     <td> {{ $item->email }} </td>
                     <td> {{ $item->roll_number }} </td>
-                    <td> {{ substr($item->permanent_full_address, 0,  10)."..." }} </td>
-                    <td> {{ substr($item->current_full_address, 0, 10)."..." }} </td>
+                    <td> {{ $item->gender }} </td>
+                    <td> {{ $item->religion }} </td>
+                    <td> {{ $item->cast }} </td>
+                    <td> {{ $item->permanent_full_address }}</td>
+                    <td> {{ $item->current_full_address }} </td>
                     <td> {{ $item->phone_number }} </td>
                     
                     
@@ -120,6 +126,9 @@
                     <th>Full Name</th>
                     <th>Email</th>
                     <th>Symbol No.</th>
+                    <th>Gender</th>
+                    <th>Religion</th>
+                    <th>Caste</th>
                     <th>P Address</th>
                     <th>C Address</th>
                     <th>Phone</th>
@@ -137,18 +146,41 @@
 
 <script>
     $(document).ready(function() {
-        // $('#table').DataTable();
-
-        // dom: 'Pfrtip',
-      $('#table').DataTable({
+      $('#example').DataTable({
+        responsive: true,
         fixedHeader: true,
-        "columnDefs": [
+        dom: 'Bfrtip',
+        lengthChange: false,
+
+        buttons: [
+           {
+                extend: 'excel',
+                title: 'Students Information',
+                filename: 'Students',
+                messageTop: 'COllege Of Information Technology And Engineering'
+          },
+       ],
+        fixedHeader: {
+        header: true,
+        footer: false
+    },
+      scrollY:        "300px",
+      scrollX:        true,
+      scrollCollapse: true,
+      paging:         true,
+      fixedColumns:   {
+          leftColumns: 2,
+          rightColumns: 1
+      },
+      "columnDefs": [
             { "searchable": false, "targets": 7 },
             { "orderable": false, "targets": 7 },
             { "width": "18%", "targets": 7 }
         ]
        });
-
+      //  table.buttons().container()
+      //   .appendTo( '#example_wrapper .col-md-6:eq(1)' );
+        
   } );
 
 

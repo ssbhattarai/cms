@@ -36,11 +36,16 @@ class StudentController extends Controller
         $students = DB::table('students')
                         ->where('name', 'LIKE', '%'. $search .'%')
                         ->orWhere('phone_number', 'LIKE', $search .'%')
-                        ->orWhere('roll_number', 'LIKE', '%'. $search .'%')
+                        ->orWhere('roll_number', 'LIKE', $search .'%')
                         ->orWhere('email', 'LIKE', '%'. $search .'%')
                         ->orWhere('gender', 'LIKE', $search .'%')
                         ->orWhere('cast', 'LIKE', $search .'%')
                         ->orWhere('religion', 'LIKE', $search .'%')
+                        ->orWhere('permanent_full_address', 'LIKE', '%'.$search .'%')
+                        ->orWhere('current_full_address', 'LIKE', '%'.$search .'%')
+                        ->orWhere('current_full_address', 'LIKE', '%'.$search .'%')
+                        ->orWhere('passed_year', 'LIKE', $search)
+                        ->orWhere('dob', 'LIKE', $search)
                         ->get();
         // dd($students);
         return view('admin.pages.student.index', compact('students'));
