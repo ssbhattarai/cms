@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/student', 'StudentController@index');
-    Route::get('/admin', 'ROLE\SuperAdmin@index');
     
-
+    
     Route::group(['prefix' => 'admin'], function() {
+        Route::get('/', 'admin\dashboardController@index');
         
 
         Route::get('users/exportexcel/', 'admin\UserController@exportExcel')->name('users.exportexcel');

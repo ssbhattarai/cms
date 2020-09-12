@@ -47,9 +47,9 @@
                       <span class="text-danger">{{ $errors->first('email') }}</span>
             @endif
           </div>
-          <div class="form-group">
+          {{-- <div class="form-group"> --}}
             <label for="roles">Select Role</label>
-            <select multiple class="form-control {{ $errors->has('roles') ? 'is-invalid' : '' }}" id="roles" name="roles">
+            <select class="js-example-basic-multiple {{ $errors->has('roles') ? 'is-invalid' : '' }}" name="roles[]" multiple="multiple" style="width: 100%">
               @foreach ($roles as $role)
                 <option>{{ $role }}</option>
               @endforeach
@@ -57,7 +57,7 @@
             @if ($errors->has('roles'))
           <span class="text-danger">{{ $errors->first('roles') }}</span>
             @endif
-          </div>
+          {{-- </div> --}}
         </div>
         
         <div class="offset-sm-1 col-sm-5">
@@ -117,4 +117,10 @@
   $('.datepicker').datepicker({
     language: 'NP'
   });
+
+
+  $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+
 </script>

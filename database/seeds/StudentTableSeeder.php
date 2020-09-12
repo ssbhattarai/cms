@@ -16,21 +16,9 @@ class StudentTableSeeder extends Seeder
     public function run()
     {
 
-        $student = Student::create([
-            'roll_number' => '123456',
-            'dob' => Carbon::now(),
-            'gender' => 'male',
-            'religion' => 'hindu',
-            'cast' => 'branmin',
-            'permanent_full_address' => 'Manthali municipality -4 Ramechhap',
-            'current_full_address' => 'Mahalaxmi municipality-1 Ramechhap',
-            'phone_number' => '9843613596',
-            'passed_college_name' => 'College Name full',
-            'passed_year' => '2014',
-            'marks_obtain' => '20.00'
-        ]);
+       
         
-        $count = 100;
+        $count = 105;
         factory(Student::class, $count)->create();
 
 

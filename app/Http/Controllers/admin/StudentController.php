@@ -15,7 +15,7 @@ class StudentController extends Controller
     public function __contruct()
     {
 
-        $this->middleware('role:Admin');
+        $this->middleware('role:Admin|Manager');
     }
     /**
      * Display a listing of the resource.

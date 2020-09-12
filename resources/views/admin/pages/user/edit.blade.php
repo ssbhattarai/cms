@@ -51,12 +51,13 @@
           </div>
           <div class="form-group">
             <label for="roles">Select Role</label>
-            <select class="form-control {{ $errors->has('roles') ? 'is-invalid' : '' }}" id="roles" name="roles" >
+            {{-- <select multiple class="form-control {{ $errors->has('roles') ? 'is-invalid' : '' }}" id="roles" name="roles[]" >
                 <option value>---Select Role---</option>
               @foreach ($roles as $role)
                 <option value="{{ $userRole }}" {{ ( $userRole == $role) ? 'selected' : '' }}>{{ $role }}</option>
               @endforeach
-            </select>
+            </select> --}}
+            {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control js-example-basic-multiple','multiple')) !!}
             @if ($errors->has('roles'))
           <span class="text-danger">{{ $errors->first('roles') }}</span>
             @endif
@@ -120,4 +121,8 @@
   $('.datepicker').datepicker({
     language: 'NP'
   });
+
+  $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
 </script>

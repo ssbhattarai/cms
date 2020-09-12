@@ -40,20 +40,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // public function getAdminRolesAttribute()
-    // {   
-    //     $adminRoles = ['teacher','admin'];
-    //     return $adminRoles;
-    // }
-
-    // public function roles()
-    // {
-    //     return $this->belongsToMany('App\Models\Role');
-    // }
-
-    // public function setPasswordAttribute($password)
-    // {   
-    //     $this->attributes['password'] = bcrypt($password);
-    // }
+    public function Student()
+    {
+        return $this->hasOne('App\Models\Student', 'email');
+    }
 
 }

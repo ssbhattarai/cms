@@ -21,7 +21,7 @@ class UserController extends Controller
 {   
     public function __construct()
     {
-        $this->middleware('role:Admin');
+        $this->middleware('role:Admin|Manager');
     }  
     /**
      * Display a listing of the resource.
@@ -71,12 +71,13 @@ class UserController extends Controller
             ]);
 
                 $input = $request->all();
+                // dd($input);
                 $input['password'] = Hash::make($input['password']);
-                $input['status'] = $request->has('status');                ;
+                $input['status'] = $request->has('status');   
                 $user = User::create($input);
                 $user->assignRole($request->input('roles'));
                 return redirect()->route('users.index')
-                ->with('success','User created successfully');
+                            ->with('success','User created successfully');
             
             
 
@@ -105,7 +106,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->first();  //! for multiselect You must change the first() -> all() function
+        $userRole = $user->roles->pluck('name','name')->all();  //! for multiselect You must change the first() -> all() function
         // dd($userRole);
         return view('admin.pages.user.edit',compact('user','roles','userRole'));
     }

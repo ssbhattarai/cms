@@ -84,30 +84,25 @@
                         <i class="fas fa-eye"></i>
                       </button>
                   </a>
+                
+                <a class="btn btn-secondary btn-sm" href="{{ route('users.pdf', $item->id) }}"> 
+                  <i class="fas fa-file-pdf"></i>
+                </a>
+        @if ( $role = Auth::user()->roles->pluck('name'))
+                @if ($role[0] == 'Admin')
                 <a href="{{route('users.edit', $item->id)}}">
                   <button class="btn btn-info  btn-sm">
                      <i class="fa fa-edit"></i>
                   </button> 
                 </a> 
-       
-        {{-- @if ( $role = Auth::user()->roles->pluck('name')) --}}
-                {{-- @if ($role[0] == 'admin') --}}
-
-              {{-- <a href="{{ route('users.delete', $item->id)}}">
-                    <button class="btn btn-danger">
-                       <i class="fa fa-trash"></i>
-                    </button>
-                </a> --}}
                        <button class="btn btn-danger btn-flat btn-sm remove-user" data-id="{{ $item->id }}" data-action="{{ route('users.delete',$item->id) }}"> 
                         <i class="fa fa-trash"></i>
                       </button>
 
-                <a class="btn btn-secondary btn-sm" href="{{ route('users.pdf', $item->id) }}"> 
-                  <i class="fas fa-file-pdf"></i>
-                </a>
+                
 
-                    {{-- @endif --}}
-                {{-- @endif --}}
+                    @endif
+                @endif
                     </td>
                 </tr>
                 @endforeach
