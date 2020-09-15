@@ -17,7 +17,7 @@
                 <i class="fas fa-pencil-alt"></i>
             </button>
             
-            <img src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png" class="rounded float-left image-responsive" alt="...">
+          <img src="{{ asset('profile/')}}/{{ Auth::user()->image }}" class="rounded float-left image-responsive" alt="ProfileImage" style="width: 37%">
           </div>
          <div class="row m-6">
              <div class="col-md-8">
