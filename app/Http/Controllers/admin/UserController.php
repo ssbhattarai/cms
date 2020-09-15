@@ -15,7 +15,8 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use PDF;
-
+use Auth;
+use File;
 
 class UserController extends Controller
 {   
@@ -111,13 +112,45 @@ class UserController extends Controller
         return view('admin.pages.user.edit',compact('user','roles','userRole'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    
+
+    public function profile_update(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|min:4',
+            'password' => [ 
+               'min:6', 
+               'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/', 
+               'same:confirm_password'
+            ],
+        ]);
+        $userId = Auth::user()->id;
+        $user = User::find($userId);
+        $input = $request->except(['_method','_token', 'roles','email']);
+        
+        if($input['password']) {
+                $input['password'] = Hash::make($input['password']);
+            }
+        
+        // $image_path = app_path("profile/{$user->image}");
+        $filename = public_path().'/profile/'.$user->image;
+        // dd($user->image);
+        if (File::exists($filename)) {
+            File::delete($filename);
+            // unlink($filename);
+        }
+
+        $imageName = time().'-'.Auth::user()->id.'.'.$request->image->getClientOriginalExtension();   
+        $request->image->move(public_path('profile/'), $imageName);
+
+        $user->name=$input['name'];
+        $user->password=$input['password'];
+        $user->image=$imageName;
+        $user->save();
+        return  redirect()->back();
+    }
+    
     public function update(Request $request, $id)
     {
         $request->validate([

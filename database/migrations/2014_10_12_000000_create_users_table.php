@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('image')->nullable();
             $table->date('date_of_join')->nullable()->default(Carbon::now());
             $table->boolean('status')->nullable()->default(false);
             $table->dateTime('last_login', 0)->nullable();

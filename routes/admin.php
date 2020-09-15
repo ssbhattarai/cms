@@ -14,6 +14,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'admin'], function() {
         Route::get('/', 'admin\dashboardController@index');
         
+        Route::get('profile', function(){
+            return view('admin.profile');
+        });
+        Route::post('profile/update', 'admin\UserController@profile_update')->name('users.profile');
+
 
         Route::get('users/exportexcel/', 'admin\UserController@exportExcel')->name('users.exportexcel');
         Route::get('users/exportcsv/', 'admin\UserController@exportCSV')->name('users.exportcsv');

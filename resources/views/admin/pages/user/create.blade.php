@@ -29,7 +29,7 @@
       </div>
       </div>
   
-      <form method="POST" action="{{ route('users.store') }}">
+    <form method="POST" action="{{ route('users.store') }}">
         @csrf
       <div class="row m-3">
         <div class="offset-sm-1 col-sm-5">
