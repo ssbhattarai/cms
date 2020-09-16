@@ -10,6 +10,7 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="{{ asset('icons/user.png')}}" alt="userimage">
             {{ Auth::user()->name }} <span class="caret"></span>
         </a>
 
@@ -17,9 +18,11 @@
             <a class="dropdown-item" href="{{ route('logout') }}"
                onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
+               <i class="fas fa-sign-out-alt"></i> &nbsp;
+               {{ __('Logout') }}
             </a>
             <a class="dropdown-item" href="/admin/profile">
+              <i class="far fa-user-circle"></i> &nbsp;
               Profile
             </a>
 

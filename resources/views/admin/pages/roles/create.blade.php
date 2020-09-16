@@ -7,9 +7,9 @@
     <div class="container">
         <nav aria-label="breadcrumb" class="m-3">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="/admin/roles">Roles</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Create Rple</li>
+              <li class="breadcrumb-item"><a href="/admin"><img src="{{ asset('icons/dashboard.png') }}" alt="dashboard-icon">&nbsp;Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="/admin/roles"> <i class="fab fa-critical-role"></i>&nbsp;Roles</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><i class="fa fa-plus"></i>&nbsp;Create</li>
             </ol>
           </nav>
     

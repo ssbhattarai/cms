@@ -10,7 +10,7 @@
     <div class="container">
         <nav aria-label="breadcrumb" class="m-3">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="/admin"><a href="/admin"><img src="{{ asset('icons/dashboard.png') }}" alt="dashboard-icon">&nbsp;Dashboard</a></li>
               <li class="breadcrumb-item"><a href="/admin/students">Students</a></li>
               <li class="breadcrumb-item active" aria-current="page">Create Student</li>
             </ol>

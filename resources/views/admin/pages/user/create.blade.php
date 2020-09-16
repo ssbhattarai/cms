@@ -9,9 +9,9 @@
     <div class="container">
         <nav aria-label="breadcrumb" class="m-3">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="/admin/user">Users</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Create user</li>
+              <li class="breadcrumb-item"><a href="/admin"> <img src="{{ asset('icons/dashboard.png') }}" alt="dashboard-icon">&nbsp;Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="/admin/user"><i class="fa fa-users"></i> &nbsp;Users</a></li>
+              <li class="breadcrumb-item active" aria-current="page"> <i class="fa fa-plus"></i>&nbsp;Create</li>
             </ol>
           </nav>
     

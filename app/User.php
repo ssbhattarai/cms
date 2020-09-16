@@ -6,11 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 
 class User extends Authenticatable
 {
-    use Notifiable,HasRoles;
+    use Notifiable, HasRoles, LogsActivity;
 
     // vendor\laravel\framework\src\Illuminate\Foundation\Auth\AuthenticatesUsers.php 
     /**
@@ -19,9 +20,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'status' , 'dob', 'mobile_number', 'last_login_ip', 'last_login'
+        'name', 'email', 'password', 'status' , 'last_login_ip', 'last_login'
     ];
+    
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = ['name', 'email', 'status' ];
+    protected static $logName = 'user';
 
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "The User has been {$eventName}";
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

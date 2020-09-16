@@ -6,8 +6,8 @@
 <div class="content-wrapper">
     <nav aria-label="breadcrumb" class="m-3">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Roles</li>
+          <li class="breadcrumb-item"><a href="/admin"><img src="{{ asset('icons/dashboard.png') }}" alt="dashboard-icon">&nbsp;Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page">  <i class="fab fa-critical-role"></i>&nbsp;Roles</li>
         </ol>
       </nav>
       <div class="card m-3">

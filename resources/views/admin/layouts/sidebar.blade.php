@@ -50,7 +50,7 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <img src="{{ asset('icons/role.png')}}" class="nav-icon" alt="role">
               <p>
                 Roles
                 <i class="right fas fa-angle-left"></i>
@@ -59,14 +59,14 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/admin/roles" class="nav-link">
-                  <i class="far fa-user nav-icon"></i>
+                  <img src="{{ asset('icons/role.png')}}" class="nav-icon" alt="role">
                   <p>Roles</p>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a href="/admin/roles/create" class="nav-link">
-                  <i class="far fa-user nav-icon"></i>
+                  <i class="fa fa-plus nav-icon"></i>
                   <p>Create Roles</p>
                 </a>
               </li>
@@ -84,7 +84,7 @@
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Widgets
+                Log
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
@@ -93,7 +93,7 @@
           <li class="nav-header">Frontend Website</li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="fa fa-home nav-icon" aria-hidden="true"></i>
               <p>
                 Home Page
                 <i class="right fas fa-angle-left"></i>
@@ -102,22 +102,22 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/admin/sliderimage" class="nav-link">
-                  <i class="far fa-user nav-icon"></i>
+                  <i class="fas fa-sliders-h nav-icon"></i>
                   <p>Top Slider</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="/admin/user/create" class="nav-link">
+                {{-- <a href="/admin/user/create" class="nav-link">
                   <i class="far fa-user nav-icon"></i>
                   <p>Create User</p>
-                </a>
+                </a> --}}
               </li>
             </ul>
           </li>
           <li class="nav-item">
             <a href="/admin/about-us" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-address-card"></i>
               <p>
                 About Us
               </p>
