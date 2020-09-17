@@ -22,11 +22,7 @@ class UserController extends Controller
     {
         $this->middleware('role:Admin|Manager');
     }  
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $data = User::all();
@@ -34,13 +30,6 @@ class UserController extends Controller
     }
 
 
-    
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {   
         $roles = Role::pluck('name','name')->all();
@@ -50,7 +39,6 @@ class UserController extends Controller
     public function store(StoreUser $request)
     {   
          $input = $request->all();
-         // dd($input);
          $input['password'] = Hash::make($input['password']);
          $input['status'] = $request->has('status');   
          $user = User::create($input);
@@ -60,24 +48,14 @@ class UserController extends Controller
             
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($id)
     {
         $user = User::find($id);
         return view('admin.pages.user.show', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function edit($id)
     {
         $user = User::find($id);
@@ -88,7 +66,6 @@ class UserController extends Controller
     }
 
 
-    
 
     public function profile_update(Request $request)
     {
