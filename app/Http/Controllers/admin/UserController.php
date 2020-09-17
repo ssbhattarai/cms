@@ -4,19 +4,17 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\View;
-
-use App\User;
-
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use PDF;
 use Auth;
 use File;
+use App\User;
+use App\Http\Requests\StoreUser;
 
 class UserController extends Controller
 {   
@@ -49,39 +47,16 @@ class UserController extends Controller
         return view('admin.pages.user.create',compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(StoreUser $request)
     {   
-       
-        $isValidate = $this->validate($request, [
-            'name' => 'required|min:5',
-            'email' => 'required|email|unique:users,email',
-            'password' => ['required', 
-               'min:6', 
-               'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/', 
-               'same:confirm_password'
-            ],
-            'roles' => 'required',
-
-            // 'status' => 'required',
-            ]);
-
-                $input = $request->all();
-                // dd($input);
-                $input['password'] = Hash::make($input['password']);
-                $input['status'] = $request->has('status');   
-                $user = User::create($input);
-                $user->assignRole($request->input('roles'));
-                return redirect()->route('users.index')
+         $input = $request->all();
+         // dd($input);
+         $input['password'] = Hash::make($input['password']);
+         $input['status'] = $request->has('status');   
+         $user = User::create($input);
+         $user->assignRole($request->input('roles'));
+         return redirect()->route('users.index')
                             ->with('success','User created successfully');
-            
-            
-
             
     }
 
@@ -117,38 +92,31 @@ class UserController extends Controller
 
     public function profile_update(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|min:4',
-            'password' => [ 
-               'min:6', 
-               'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/', 
-               'same:confirm_password'
-            ],
-        ]);
+
         $userId = Auth::user()->id;
         $user = User::find($userId);
         $input = $request->except(['_method','_token', 'roles','email']);
         
         if($input['password']) {
-                $input['password'] = Hash::make($input['password']);
-            }
-        
-        // $image_path = app_path("profile/{$user->image}");
-        $filename = public_path().'/profile/'.$user->image;
-        // dd($user->image);
-        if (File::exists($filename)) {
-            File::delete($filename);
-            // unlink($filename);
+            $input['password'] = Hash::make($input['password']);
+            $user->password=$input['password'];
         }
 
-        $imageName = time().'-'.Auth::user()->id.'.'.$request->image->getClientOriginalExtension();   
-        $request->image->move(public_path('profile/'), $imageName);
+        if($request->has('image')){
+            $filename = public_path().'/profile/'.$user->image;
+
+            if (File::exists($filename)) {
+                File::delete($filename);
+                // unlink($filename);
+            }
+            $imageName = time().'-'.Auth::user()->id.'.'.$request->image->getClientOriginalExtension();   
+            $request->image->move(public_path('profile/'), $imageName);
+            $user->image=$imageName;
+        }
 
         $user->name=$input['name'];
-        $user->password=$input['password'];
-        $user->image=$imageName;
         $user->save();
-        return  redirect()->back();
+        return  redirect()->back()->with('success', 'Profile Updated Successfully !');
     }
     
     public function update(Request $request, $id)

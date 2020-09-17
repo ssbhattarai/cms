@@ -11,10 +11,6 @@
         </ol>
       </nav>
     <div class="m-3">
-        this is where all log will be displayed;
-        {{-- @foreach ($loges as $item)
-            {{ $item->description }} <br>
-        @endforeach --}}
         <div class="table-responsive">
             <table class="table table-striped table-bordered mr-3" id="table" style="width:100%">
                 <thead>
@@ -23,7 +19,7 @@
                         <th class="font-weignt-bold">Table Name</th>
                         <th class="font-weignt-bold">description</th>
                         <th class="font-weignt-bold">Subject</th>
-                        <th class="font-weignt-bold">Cause</th>
+                        <th class="font-weignt-bold">User Email</th>
                         <th class="font-weignt-bold">Properties</th>
                         <th class="font-weignt-bold">Time</th>
                         <th class="font-weignt-bold">Actions</th>
@@ -39,7 +35,7 @@
                         <td> {{ $item->causer->email }} </td>
                         <td> {{ $item->properties  ?? ''}} </td>
                         <td> {{ $item->created_at }} </td>
-                       <td> Action</td>
+                       <td> <button type="btn" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -49,7 +45,7 @@
                         <th>Table Name</th>
                         <th>description</th>
                         <th>Subject</th>
-                        <th>Cause</th>
+                        <th>User Email</th>
                         <th>Properties</th>
                         <th>Time</th>
                         <th>Actions</th>
@@ -62,3 +58,17 @@
 
 
 @include('admin.layouts.footer')
+
+<script>
+$(document).ready(function() {
+    // $('#table').DataTable();
+
+  $('#table').DataTable({
+    "columnDefs": [
+        { "searchable": false, "targets": 7 },
+        { "orderable": false, "targets": 7}
+    ]
+   });
+} );
+
+</script>

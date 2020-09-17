@@ -21,6 +21,8 @@
           </div>
          <div class="row m-6">
              <div class="col-md-8">
+              @include('flash-message')
+              
                 <table class="table table-borderless">
                     <thead>
                       <tr>
@@ -67,10 +69,14 @@
               <div class="form-group">
                 <label for="name">Name</label>
               <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : ''}}" id="name" name="name" value="{{ Auth::user()->name }}">
+              @if ($errors->has('name'))
+              <span class="text-danger">{{ $errors->first('name')}}</span>
+              @endif
               </div>
                 <div class="form-group">
                   <label for="password">Password</label>
                   <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : ''}}" id="password" name="password">
+            
                 </div>
 
                 <div class="form-group">
@@ -83,15 +89,11 @@
                 <input type="file" class="form-control-file {{ $errors->has('image') ? 'is-invalid' : ''}}" id="image" name="image">
                 </div>
               
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="submit" class="btn btn-outline-primary ml-5">Save Changes</button>
               </form>
 
         </div>
        
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="submitForm">Save changes</button>
-        </div>
       </div>
     </div>
     @yield('scripts')

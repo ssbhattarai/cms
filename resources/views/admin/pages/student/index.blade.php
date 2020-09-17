@@ -23,13 +23,9 @@
       </div>
   
     <div class="container mt-5">
+      
+      @include('flash-message')
 
-
-      @if ($message = Session::get('success'))
-          <div class="alert alert-success">
-            <p>{{ $message }}</p>
-      </div>
-        @endif
         <div class="row">
           <div class="col-md-4 m-3">
             <form action="{{ route('users.search') }}" method="GET" class="form-inline">
