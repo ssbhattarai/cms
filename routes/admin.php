@@ -17,6 +17,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('profile', function(){
             return view('admin.profile');
         });
+
+        Route::get('logs', function(){
+            return view('admin.pages.log.all-log');
+        });
+
         Route::post('profile/update', 'admin\UserController@profile_update')->name('users.profile');
 
 

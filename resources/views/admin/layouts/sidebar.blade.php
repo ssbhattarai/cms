@@ -17,30 +17,40 @@
         <div class="info text-white font-weight-bold">{{ Auth::user()->name }}
         </div>
       </div>
-
+      {{-- {{ (Request::is('admin/dashboard') || Request::is('/admin/dashboard')) ? ' class="active"' : '' }} --}}
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="/admin" class="nav-link {{ (Request::is('admin') || Request::is('/admin')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+              Dashboard
+                {{-- <span class="right badge badge-danger">New</span> --}}
+              </p>
+            </a>
+          </li>
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview {{ (Request::is('admin/user')) || (Request::is('admin/user/create'))  ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ (Request::is('admin/user')) || (Request::is('admin/user/create'))  ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Users
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/admin/user" class="nav-link">
+                <a href="/admin/user" class="nav-link  {{ (Request::is('admin/user')) ? 'active' : '' }}">
                   <i class="far fa-user nav-icon"></i>
                   <p>Users</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="/admin/user/create" class="nav-link">
+                <a href="/admin/user/create" class="nav-link  {{ (Request::is('/admin/user/create')) ? 'active' : '' }}">
                   <i class="far fa-user nav-icon"></i>
                   <p>Create User</p>
                 </a>
@@ -48,7 +58,7 @@
             </ul>
           </li>
 
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview {{ (Request::is('admin/roles')) || (Request::is('admin/roles/create'))  ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
             <img src="{{ asset('icons/role.png')}}" class="nav-icon" alt="role">
               <p>
@@ -58,14 +68,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/admin/roles" class="nav-link">
+                <a href="/admin/roles" class="nav-link  {{ (Request::is('admin/roles')) ? 'active' : '' }}">
                   <img src="{{ asset('icons/role.png')}}" class="nav-icon" alt="role">
                   <p>Roles</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="/admin/roles/create" class="nav-link">
+                <a href="/admin/roles/create" class="nav-link  {{ (Request::is('admin/roles/create')) ? 'active' : '' }}">
                   <i class="fa fa-plus nav-icon"></i>
                   <p>Create Roles</p>
                 </a>
@@ -73,7 +83,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="/admin/students" class="nav-link">
+            <a href="/admin/students" class="nav-link  {{ (Request::is('admin/students')) || (Request::is('admin/students/create')) ? 'active' : '' }}">
               <i class="nav-icon fa fa-graduation-cap" aria-hidden="true"></i>
               <p>
                 Students
@@ -81,11 +91,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+          <a href="/admin/logs" class="nav-link {{ Request::is('admin/logs') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-history"></i>
               <p>
-                Log
-                <span class="right badge badge-danger">New</span>
+                Application Log
+                {{-- <span class="right badge badge-danger">New</span> --}}
               </p>
             </a>
           </li>

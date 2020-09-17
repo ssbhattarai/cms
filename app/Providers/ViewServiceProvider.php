@@ -8,7 +8,7 @@ use DB;
 use App\Models\About;
 use App\User;
 use Spatie\Permission\Models\Role;
-
+use Spatie\Activitylog\Models\Activity;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -51,6 +51,15 @@ class ViewServiceProvider extends ServiceProvider
                 'rolesWithuserCount' => $rolesWithUsers,
                 // 'totalAdminUser' => $allAdmin
             ]);
+        });
+        view()->composer('admin.pages.log.all-log', function($view){
+            $allLogs = Activity::all();
+            // dd($allLogs[0]->id);
+            foreach($allLogs as $log){
+                $user = User::find($log->causer_id); 
+                // dd($user);
+            }
+            $view->with('loges', Activity::all() );
         });
     }
 }
